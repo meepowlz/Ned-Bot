@@ -23,4 +23,7 @@ async def on_message(message: discord.Message):
 		await message.channel.send("east")
 
 
-bot.run(os.environ["TOKEN"])
+try:
+	bot.run(os.environ["TOKEN"])
+except KeyboardInterrupt:
+	bot.close()
