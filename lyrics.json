@@ -1,18 +1,422 @@
 [
     {
-        "lyric": "First",
+        "lyric": "I can feel my saturation",
         "id": 0
     },
     {
-        "lyric": "Second",
+        "lyric": "Lost my job, my wife and child",
         "id": 1
     },
     {
-        "lyric": "Third",
+        "lyric": "I don't bother anyone",
         "id": 2
     },
     {
-        "lyric": "Fourth",
+        "lyric": "I know it's over",
         "id": 3
+    },
+    {
+        "lyric": "Like a little splinter buried in your skin",
+        "id": 4
+    },
+    {
+        "lyric": "Shed your modesty",
+        "id": 5
+    },
+    {
+        "lyric": "I'm already bored",
+        "id": 6
+    },
+    {
+        "lyric": "Up and down, they're nodding",
+        "id": 7
+    },
+    {
+        "lyric": "I am a Megalodon, ocean's feelin' like a pond (Like a pond)",
+        "id": 8
+    },
+    {
+        "lyric": "I'm on the outside",
+        "id": 9
+    },
+    {
+        "lyric": "Slow down on Monday",
+        "id": 10
+    },
+    {
+        "lyric": "Catch me floatin' circles in my fishbowl",
+        "id": 11
+    },
+    {
+        "lyric": "Now that they know information (Information)",
+        "id": 12
+    },
+    {
+        "lyric": "Why cure disease of confusion (Of confusion)",
+        "id": 13
+    },
+    {
+        "lyric": "The summer I watched the tube, I saw enough",
+        "id": 14
+    },
+    {
+        "lyric": "Oh-oh-oh, they're trying hard to weaponize",
+        "id": 15
+    },
+    {
+        "lyric": "Keep your bliss",
+        "id": 16
+    },
+    {
+        "lyric": "Get out of our way, we're moving sideways",
+        "id": 17
+    },
+    {
+        "lyric": "You are formidable to me",
+        "id": 18
+    },
+    {
+        "lyric": "Fast-forward thirteen years now",
+        "id": 19
+    },
+    {
+        "lyric": "You should bounce, bounce, bounce, man",
+        "id": 20
+    },
+    {
+        "lyric": "If they come knockin' (Pop pop pop)",
+        "id": 21
+    },
+    {
+        "lyric": "We come for you, no chances",
+        "id": 22
+    },
+    {
+        "lyric": "How'd you get the location? Put together pieces?",
+        "id": 23
+    },
+    {
+        "lyric": "Takin' inventory of his life",
+        "id": 24
+    },
+    {
+        "lyric": "I don't want to go like this (Ooh-ooh-ooh)",
+        "id": 25
+    },
+    {
+        "lyric": "Blankets over mirrors, she tends to like it",
+        "id": 26
+    },
+    {
+        "lyric": "With the bells and the whistles scaled back",
+        "id": 27
+    },
+    {
+        "lyric": "I can't believe how much I hate",
+        "id": 28
+    },
+    {
+        "lyric": "I'll be right there",
+        "id": 29
+    },
+    {
+        "lyric": "Oh, I know how to levitate up off my feet",
+        "id": 30
+    },
+    {
+        "lyric": "Come down, come down",
+        "id": 31
+    },
+    {
+        "lyric": "Danger in the fabric of this thing I made",
+        "id": 32
+    },
+    {
+        "lyric": "Can't stop thinking about if and when I die",
+        "id": 33
+    },
+    {
+        "lyric": "If I keep moving, they won't know",
+        "id": 34
+    },
+    {
+        "lyric": "He'll always try to stop me, that Nicolas Bourbaki",
+        "id": 35
+    },
+    {
+        "lyric": "Lights, they blink to me, transmitting things to me",
+        "id": 36
+    },
+    {
+        "lyric": "When everyone you thought you knew",
+        "id": 37
+    },
+    {
+        "lyric": "Surrounded and up against a wall",
+        "id": 38
+    },
+    {
+        "lyric": "If there comes a day",
+        "id": 39
+    },
+    {
+        "lyric": "Stay with me, no, you don't need to run",
+        "id": 40
+    },
+    {
+        "lyric": "Sippin' on straight chlorine",
+        "id": 41
+    },
+    {
+        "lyric": "Fall out of formation, woah",
+        "id": 42
+    },
+    {
+        "lyric": "Hide you in my coat pocket, where I kept my rebel red",
+        "id": 43
+    },
+    {
+        "lyric": "You know, I've always been collected, calm, and chill",
+        "id": 44
+    },
+    {
+        "lyric": "For you, I'd go step to a dude much bigger than me",
+        "id": 45
+    },
+    {
+        "lyric": "What's my problem?",
+        "id": 46
+    },
+    {
+        "lyric": "Don't get me wrong, the rise in awareness",
+        "id": 47
+    },
+    {
+        "lyric": "Sometimes I feel cold, even paralyzed",
+        "id": 48
+    },
+    {
+        "lyric": "Yeah, they might be talking behind your head",
+        "id": 49
+    },
+    {
+        "lyric": "Nice to know my kind will be on my side",
+        "id": 50
+    },
+    {
+        "lyric": "East is up, I'm fearless when I hear this on the low",
+        "id": 51
+    },
+    {
+        "lyric": "I'm heavy, my jumpsuit is on steady",
+        "id": 52
+    },
+    {
+        "lyric": "What I say when I want to be enough",
+        "id": 53
+    },
+    {
+        "lyric": "I'll keep on tryin', might as well",
+        "id": 54
+    },
+    {
+        "lyric": "Rust around the rim, drink it anyway",
+        "id": 55
+    },
+    {
+        "lyric": "Though I am bruised, face of contusions",
+        "id": 56
+    },
+    {
+        "lyric": "I could take the high road",
+        "id": 57
+    },
+    {
+        "lyric": "In City, I feel my spirit is contained",
+        "id": 58
+    },
+    {
+        "lyric": "I created this world to feel some control",
+        "id": 59
+    },
+    {
+        "lyric": "I am on an island, no one to confide",
+        "id": 60
+    },
+    {
+        "lyric": "I've got a pet cheetah down in my basement",
+        "id": 61
+    },
+    {
+        "lyric": "I can feel pressure start to possess my mind",
+        "id": 62
+    },
+    {
+        "lyric": "You were one of those classic ones",
+        "id": 63
+    },
+    {
+        "lyric": "I'm tired of tending to this fire",
+        "id": 64
+    },
+    {
+        "lyric": "The burning is so low it's concerning",
+        "id": 65
+    },
+    {
+        "lyric": "There's an infestation in my mind's imagination",
+        "id": 66
+    },
+    {
+        "lyric": "Can you save, can you save my",
+        "id": 67
+    },
+    {
+        "lyric": "Nah, I didn't understand a thing you said",
+        "id": 68
+    },
+    {
+        "lyric": "I wish I found some better sounds no one's ever heard",
+        "id": 69
+    },
+    {
+        "lyric": "Wish we could turn back time to the good old days",
+        "id": 70
+    },
+    {
+        "lyric": "Sometimes a certain smell will take me back to when I was young",
+        "id": 71
+    },
+    {
+        "lyric": "We used to play pretend, give each other different names",
+        "id": 72
+    },
+    {
+        "lyric": "I just wanna stay in the sun where I find",
+        "id": 73
+    },
+    {
+        "lyric": "\"I'd die for you,\" that's easy to say",
+        "id": 74
+    },
+    {
+        "lyric": "Uh, I'm fairly local, I've been around",
+        "id": 75
+    },
+    {
+        "lyric": "Yo, this song will never be on the radio",
+        "id": 76
+    },
+    {
+        "lyric": "I'm not evil to the core, what I shouldn't do I will fight",
+        "id": 77
+    },
+    {
+        "lyric": "An-ny\u014fng-ha-se-yo",
+        "id": 78
+    },
+    {
+        "lyric": "The songs on the radio are okay",
+        "id": 79
+    },
+    {
+        "lyric": "You fell asleep in my car, I drove the whole time",
+        "id": 80
+    },
+    {
+        "lyric": "My heart is my armor",
+        "id": 81
+    },
+    {
+        "lyric": "They say, \"Stay in your lane, boy, lane, boy\"",
+        "id": 82
+    },
+    {
+        "lyric": "They think this thing is a highway",
+        "id": 83
+    },
+    {
+        "lyric": "I'm sorry if that question I asked last",
+        "id": 84
+    },
+    {
+        "lyric": "When the leader of the bad guys sang",
+        "id": 85
+    },
+    {
+        "lyric": "Three lights are lit, but the fourth one's out",
+        "id": 86
+    },
+    {
+        "lyric": "Scared of my own image, scared of my own immaturity",
+        "id": 87
+    },
+    {
+        "lyric": "Gnawing on the bishops, claw our way up their system",
+        "id": 88
+    },
+    {
+        "lyric": "Help me polarize, help me polarize, help me down",
+        "id": 89
+    },
+    {
+        "lyric": "Polarize is taking your disguises",
+        "id": 90
+    },
+    {
+        "lyric": "Domingo en fuego",
+        "id": 91
+    },
+    {
+        "lyric": "We don't believe what's on TV",
+        "id": 92
+    },
+    {
+        "lyric": "What if my dream does not happen?",
+        "id": 93
+    },
+    {
+        "lyric": "But I don't care what's in your hair",
+        "id": 94
+    },
+    {
+        "lyric": "A loser hides behind",
+        "id": 95
+    },
+    {
+        "lyric": "Release me from the present, I'm obsessin', all these questions",
+        "id": 96
+    },
+    {
+        "lyric": "Hope you're dead 'cause how could you sleep at a time like this?",
+        "id": 97
+    },
+    {
+        "lyric": "My shadow tilts its head at me",
+        "id": 98
+    },
+    {
+        "lyric": "Be the one, be the one to take my soul and make it undone",
+        "id": 99
+    },
+    {
+        "lyric": "Put away, put away all the gods your father served today",
+        "id": 100
+    },
+    {
+        "lyric": "I don't know why I just feel I'm better off",
+        "id": 101
+    },
+    {
+        "lyric": "Heard you say, \"Not today\"",
+        "id": 102
+    },
+    {
+        "lyric": "I'm a goner, somebody catch my breath",
+        "id": 103
+    },
+    {
+        "lyric": "Though I'm weak and beaten down",
+        "id": 104
     }
 ]
