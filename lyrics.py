@@ -3,11 +3,29 @@
 
 import json
 
+# Opens json file to read
+with open("lyrics.json", "r") as file:
+    lyrics = json.load(file)
 
-lyrics = []
 
-lyrics.append({})
+def add_lyrics():
+    while True:
+        try:
+            lyric = input("Enter song lyric: ")
+            lyrics.append({"lyric": lyric})
+        except KeyboardInterrupt:
+            write_changes(lyrics)
 
-# Open json file
-with open("lyrics.json", "w") as file:
-    json.dumps(lyrics)
+
+def add_ids():
+    for i, lyric in enumerate(lyrics):
+        lyric["id"] = i
+    write_changes(lyrics)
+
+
+def write_changes(changes):
+    # Open json file to write
+    with open("lyrics.json", "w") as file:
+        json.dump(changes, file, indent=4)
+
+add_ids()
