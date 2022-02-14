@@ -15,7 +15,8 @@ def add_lyrics():
             lyrics.append({"lyric": lyric})
         except KeyboardInterrupt:
             write_changes(lyrics)
-
+            break
+    add_ids()
 
 def add_ids():
     for i, lyric in enumerate(lyrics):
@@ -28,4 +29,5 @@ def write_changes(changes):
     with open("lyrics.json", "w") as file:
         json.dump(changes, file, indent=4)
 
-add_ids()
+
+add_lyrics()
