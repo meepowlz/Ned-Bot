@@ -19,7 +19,7 @@ async def cheeseyay(ctx: commands.Context, *, name: str = None):
 
 @tasks.loop(seconds=20)
 async def lyric():
-	channel = await bot.fetch_channel(868985347902685297)
+	channel = await bot.fetch_channel(868961462029262910)
 	lyric = lyrics.random_lyric(lyrics.lyrics)
 	await channel.send(lyric)
 
@@ -32,6 +32,7 @@ async def on_message(message: discord.Message):
 
 
 try:
+	lyric.start()
 	bot.run(os.environ["TOKEN"])
 except KeyboardInterrupt:
 	bot.close()
