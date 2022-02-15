@@ -17,10 +17,11 @@ async def cheeseyay(ctx: commands.Context, *, name: str = None):
 	await ctx.send(f"yaycheese {ctx.author.nick} {name or ''}")
 
 
-@bot.command()
-async def lyric(ctx: commands.Context):
+@tasks.loop(seconds=20)
+async def lyric():
+	channel = await bot.fetch_channel(868985347902685297)
 	lyric = lyrics.random_lyric(lyrics.lyrics)
-	await ctx.send(lyric)
+	await channel.send(lyric)
 
 
 @bot.event
