@@ -1,7 +1,8 @@
-from discord.ext import commands
+from discord.ext import commands, tasks
 import os
 import dotenv
 import discord
+import lyrics
 
 dotenv.load_dotenv()
 
@@ -14,6 +15,12 @@ bot = commands.Bot(command_prefix="+", intents=intents)
 @bot.command()
 async def cheeseyay(ctx: commands.Context, *, name: str = None):
 	await ctx.send(f"yaycheese {ctx.author.nick} {name or ''}")
+
+
+@bot.command()
+async def lyric(ctx: commands.Context):
+	lyric = lyrics.random_lyric(lyrics.lyrics)
+	await ctx.send(lyric)
 
 
 @bot.event
