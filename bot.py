@@ -16,6 +16,7 @@ bot = commands.Bot(command_prefix="+", intents=intents)
 async def cheeseyay(ctx: commands.Context, *, name: str = None):
 	await ctx.send(f"yaycheese {ctx.author.nick} {name or ''}")
 
+
 @bot.command()
 async def gabiplaying(ctx: commands.Context):
 	current, recent = listenbrainz.user_recent_activity()
