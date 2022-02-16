@@ -17,14 +17,28 @@ response_recordings = requests.get("https://api.listenbrainz.org/1/stats/user/tw
 response_np = requests.get("https://api.listenbrainz.org/1/user/twitch0001/playing-now")
 response_recent = requests.get("https://api.listenbrainz.org/1/users/twitch0001/recent-listens")
 
+print(response_recent.status_code)
+
 # Converts to json format
 listen_count = response_listen_count.json()["payload"]["count"]
 recordings = response_recordings.json()["payload"]["recordings"]
-now_playing = response_np.json()
-recent_listens = response_recent.json()
+now_playing = response_np.json()["payload"]["listens"]
+recent_listens = response_recent.json()["payload"]["listens"][0]["track_metadata"]
 
 print(now_playing)
 print(recent_listens)
+
+
+def user_recent_activity():
+    try:
+        current = str(f"Now listening to: \"{now_playing['track_name']}\" by {now_playing['artist_name']} on {now_playing['listening_from']}")
+    except TypeError:
+        current = str("User is not listening to anything right now")
+    try:
+        recent = str(f"Recently played: \"{recent_listens['track_name']}\"")
+    except TypeError:
+        recent = str("No recent track data found")
+    return current, recent
 
 
 # Prints total listens and top songs
@@ -35,4 +49,4 @@ def user_stats():
         print(f"Listen count: {recording['listen_count']}")
 
 
-user_stats()
+user_recent_activity()

@@ -2,7 +2,7 @@ from discord.ext import commands, tasks
 import os
 import dotenv
 import discord
-import lyrics
+import lyrics, listenbrainz
 
 dotenv.load_dotenv()
 
@@ -16,8 +16,14 @@ bot = commands.Bot(command_prefix="+", intents=intents)
 async def cheeseyay(ctx: commands.Context, *, name: str = None):
 	await ctx.send(f"yaycheese {ctx.author.nick} {name or ''}")
 
+@bot.command()
+async def gabiplaying(ctx: commands.Context):
+	current, recent = listenbrainz.user_recent_activity()
+	await ctx.send(current)
+	await ctx.send(recent)
 
-@tasks.loop(minutes=2)
+
+@tasks.loop(seconds=10)
 async def lyric():
 	channel = await bot.fetch_channel(893887834396712960)
 	lyric = lyrics.random_lyric(lyrics.lyrics)
