@@ -46,9 +46,9 @@ async def lyric():
 @bot.event
 async def on_message(message: discord.Message):
 	await bot.process_commands(message)
-	if message.content.lower in east_list:
+	if message.content.lower() in east_list:
 		await message.channel.send("East")
-	elif message.content.lower == "no":
+	elif message.content.lower() == "no":
 		await message.channel.send("I move slow")
 
 
