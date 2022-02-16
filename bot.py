@@ -12,6 +12,10 @@ intents.presences = False
 bot = commands.Bot(command_prefix="+", intents=intents)
 
 
+# A list of keywords for Ned to look for
+east_list = ["whats up","what's up", "whats up?", "what's up?", "wassup", "wassup?"]
+
+
 @bot.command()
 async def cheeseyay(ctx: commands.Context, *, name: str = None):
 	await ctx.send(f"yaycheese {ctx.author.nick} {name or ''}")
@@ -24,7 +28,13 @@ async def gabiplaying(ctx: commands.Context):
 	await ctx.send(recent)
 
 
-@tasks.loop(seconds=10)
+@bot.command()
+async def lyric(ctx: commands.Context):
+	lyric = lyrics.random_lyric(lyrics.lyrics)
+	await ctx.send(lyric)
+
+
+@tasks.loop(minutes=3)
 async def lyric():
 	channel = await bot.fetch_channel(893887834396712960)
 	lyric = lyrics.random_lyric(lyrics.lyrics)
@@ -34,8 +44,10 @@ async def lyric():
 @bot.event
 async def on_message(message: discord.Message):
 	await bot.process_commands(message)
-	if message.content == "what's up":
-		await message.channel.send("east")
+	if message.content.lower in east_list:
+		await message.channel.send("East")
+	elif message.conent.lower == "no":
+		await message.channel.send("I move slow")
 
 
 try:
