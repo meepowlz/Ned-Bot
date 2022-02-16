@@ -34,7 +34,7 @@ async def lyric(ctx: commands.Context):
 	await ctx.send(lyric)
 
 
-@tasks.loop(minutes=3)
+@tasks.loop(hours=4)
 async def lyric():
 	channel = await bot.fetch_channel(893887834396712960)
 	lyric = lyrics.random_lyric(lyrics.lyrics)
