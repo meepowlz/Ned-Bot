@@ -22,8 +22,16 @@ response_recent = requests.get("https://api.listenbrainz.org/1/users/twitch0001/
 # Converts to json format
 listen_count = response_listen_count.json()["payload"]["count"]
 recordings = response_recordings.json()["payload"]["recordings"]
-now_playing = response_np.json()["payload"]["listens"]
-recent_listens = response_recent.json()["payload"]["listens"][0]["track_metadata"]
+now_playing = response_np.json()
+print(now_playing)
+try:
+    now_playing = response_np.json()["payload"]["listens"][0]
+except IndexError:
+    now_playing = ""
+try:
+    recent_listens = response_recent.json()["payload"]["listens"][0]["track_metadata"]
+except IndexError:
+    recent_listens = ""
 
 # print(now_playing)
 # print(recent_listens)

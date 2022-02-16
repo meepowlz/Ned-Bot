@@ -10,6 +10,8 @@ intents = discord.Intents.all()
 intents.members = False
 intents.presences = False
 bot = commands.Bot(command_prefix="+", intents=intents)
+bot.load_extension("cogs.cheese")
+bot.load_extension("jishaku")
 
 
 # A list of keywords for Ned to look for
@@ -46,7 +48,7 @@ async def on_message(message: discord.Message):
 	await bot.process_commands(message)
 	if message.content.lower in east_list:
 		await message.channel.send("East")
-	elif message.conent.lower == "no":
+	elif message.content.lower == "no":
 		await message.channel.send("I move slow")
 
 
