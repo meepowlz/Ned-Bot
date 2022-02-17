@@ -5,13 +5,36 @@ from discord.ext import commands
 
 class Cheese:
 
-	def __init__(self, species: str, age: int, weight: float):
+	def __init__(self, name: str, species: str, age: int, weight: float, moldy_after: int):
+		"""
+		A class for making new cheeses
+		species: the name of the cheese (ex. cheddar)
+		age: # of months aged
+		weight: in oz
+		"""
+		self.name = name
 		self.species = species
 		self.age = age
-		self.weight = weight
+		self.weight = float(round(weight, 2))
+		self.moldy_after = weight
+
+	def age_cheese(self, months):
+		print(f"{self.name} was {self.age} months old")
+		print(f"{self.name} is being aged {months} months")
+		self.age += months
+		print(f"{self.name} is now {self.age} months old")
+
+	def slice_cheese(self, times):
+		print(f"{self.name} was {self.weight} oz")
+		self.weight = round((self.weight / times), 2)
+		print(f"{self.name} was cut {times} times")
+		print(f"{self.name} is now {self.weight} oz")
 
 
-mark = Cheese("Cheddar", 12, 14)
+mark = Cheese("Mark", "Cheddar", 12, 15, 14)
+mark.age_cheese(3)
+mark.slice_cheese(3)
+
 
 
 # Commands
