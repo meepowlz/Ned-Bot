@@ -2,3 +2,4 @@ git+https://github.com/rapptz/discord.py
 python-dotenv
 requests
 jishaku
+discord

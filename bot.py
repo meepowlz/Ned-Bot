@@ -2,14 +2,15 @@ from discord.ext import commands, tasks
 import os
 import dotenv
 import discord
-import lyrics, listenbrainz
+import lyrics
+import listenbrainz
 
 dotenv.load_dotenv()
 
 intents = discord.Intents.all()
 intents.members = False
 intents.presences = False
-bot = commands.Bot(command_prefix="+", intents=intents)
+bot = commands.Bot(command_prefix=os.environ["PREFIX"], intents=intents)
 bot.load_extension("cogs.cheese")
 bot.load_extension("jishaku")
 
@@ -50,6 +51,8 @@ async def on_message(message: discord.Message):
 		await message.channel.send("East")
 	elif message.content.lower() == "no":
 		await message.channel.send("I move slow")
+	if message.content.lower() == "cheese time":
+		await message.channel.send(":cheese::timer:")
 
 
 try:

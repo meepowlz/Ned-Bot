@@ -17,27 +17,34 @@ response_recordings = requests.get("https://api.listenbrainz.org/1/stats/user/tw
 response_np = requests.get("https://api.listenbrainz.org/1/user/twitch0001/playing-now")
 response_recent = requests.get("https://api.listenbrainz.org/1/users/twitch0001/recent-listens")
 
-# print(response_recent.status_code)
+print(response_recent.status_code)
+print(response_np.status_code)
+print(response_np.json())
 
 # Converts to json format
 listen_count = response_listen_count.json()["payload"]["count"]
 recordings = response_recordings.json()["payload"]["recordings"]
-now_playing = response_np.json()
-print(now_playing)
-try:
-    now_playing = response_np.json()["payload"]["listens"][0]
-except IndexError:
-    now_playing = ""
-try:
-    recent_listens = response_recent.json()["payload"]["listens"][0]["track_metadata"]
-except IndexError:
-    recent_listens = ""
 
-# print(now_playing)
-# print(recent_listens)
+
+# Attempts to get the data but listenbrainz weird
+def get_data(time):
+    if time == "np":
+        try:
+            now_playing = response_np.json()["payload"]["listens"][0]
+        except IndexError:
+            now_playing = ""
+        return now_playing
+    elif time == "recent":
+        try:
+            recent_listens = response_recent.json()["payload"]["listens"][0]["track_metadata"]
+        except KeyError:
+            recent_listens = ""
+            return recent_listens
 
 
 def user_recent_activity():
+    now_playing = get_data("np")
+    recent_listens = get_data("recent")
     try:
         current = str(f"Now listening to: \"{now_playing['track_name']}\" by {now_playing['artist_name']} on {now_playing['listening_from']}")
     except TypeError:
