@@ -1,5 +1,6 @@
 import requests
 import json
+import time
 
 """
 MusicBrainz API root url
@@ -23,7 +24,14 @@ print(release_json)
 
 print(artist_json["release-groups"][0]["id"])
 
+# Retrieve all release groups
 for i, release in enumerate(artist_json["release-groups"]):
-    print(i)
     print(artist_json["release-groups"][i]["title"])
+    print(f"MBID: {artist_json['release-groups'][i]['id']}")
+    release_group_mbid = artist_json['release-groups'][i]['id']
+    time.sleep(1)
+    release_request = requests.get(f"https://musicbrainz.org/ws/2/release-group/{release_group_mbid}?inc=releases&fmt=json")
+    release_request.json()
+    print(release_request)
+
 
