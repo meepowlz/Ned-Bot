@@ -20,6 +20,21 @@ artist_json = artist_request.json()
 #print(artist_json)
 
 
+def create_newfile(filename):
+    try:
+        with open(f"{filename}.json", "r") as file:
+            print(f"{file.name} was found!")
+    except FileNotFoundError:
+        with open(f"{filename}.json", "x") as file:
+            print(f"{file.name} was created successfully!")
+    return filename
+
+
+def write_changes(filename, changes):
+    with open(f"{filename}.json", "w") as file:
+        json.dump(changes, file, indent=4)
+
+
 def convert_length(milliseconds):
     seconds = int(milliseconds / 1000)
     minutes, seconds = divmod(seconds, 60)
@@ -71,6 +86,12 @@ def traverse_releases():
         print("")
 
 
-def write_changes():
-    print("a")
+def main():
 
+    # Checks for or creates a data file
+    filename = input("Enter the name of the file you wish to modify (ex. 'file.json'): ")
+    create_newfile(filename)
+
+
+
+main()
