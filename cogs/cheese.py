@@ -11,12 +11,13 @@ class Cheese:
 		species: the name of the cheese (ex. cheddar)
 		age: # of months aged
 		weight: in oz
+		moldy_after: expiration in months
 		"""
 		self.name = name
 		self.species = species
 		self.age = age
 		self.weight = float(round(weight, 2))
-		self.moldy_after = weight
+		self.moldy_after = moldy_after
 
 	def age_cheese(self, months):
 		print(f"{self.name} was {self.age} months old")
@@ -30,11 +31,20 @@ class Cheese:
 		print(f"{self.name} was cut {times} times")
 		print(f"{self.name} is now {self.weight} oz")
 
+	def check_moldy(self):
+		if self.age > self.moldy_after:
+			print(f"{self.name} is moldy :(")
+		else:
+			print("No mold!")
 
-mark = Cheese("Mark", "Cheddar", 12, 15, 14)
-mark.age_cheese(3)
-mark.slice_cheese(3)
 
+# mark = Cheese("Mark", "Cheddar", 12, 15, 14)
+# mark.age_cheese(3)
+# mark.slice_cheese(3)
+# mark.check_moldy()
+
+sally = Cheese("Sally", "Pecorino", 3, 35, 6)
+sally.slice_cheese(5)
 
 
 # Commands
