@@ -49,7 +49,6 @@ def random_lyric(lyrics_list):
     return selected_lyric["lyric"]
 
 
-
 # Writes any changes to the file
 def write_changes(changes):
     # Open json file to write
