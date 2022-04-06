@@ -20,10 +20,10 @@ def create_newfile(filename):
     :return: str
     """
     try:
-        with open(f"{filename}.json", "r") as file:
+        with open(f"data/{filename}.json", "r") as file:
             print(f"{file.name} was found!")
     except FileNotFoundError:
-        with open(f"{filename}.json", "x") as file:
+        with open(f"data/{filename}.json", "x") as file:
             print(f"{file.name} was created successfully!")
     return filename
 
@@ -35,7 +35,7 @@ def write_changes(filename, changes):
     :param changes: list
     :return: None
     """
-    with open(f"{filename}.json", "w") as file:
+    with open(f"data/{filename}.json", "w") as file:
         json.dump(changes, file, indent=4)
 
 
@@ -184,7 +184,11 @@ def main():
         create_newfile(filename)
 
         # Begins file modification
-        action = int(input("0-Add data to file 1-Clear file 2-Delete file"))
+        try:
+            action = int(input("0-Add data to file 1-Clear file 2-Delete file"))
+        except ValueError:
+            print("Invalid selection. Aborting...")
+            break
         if action == 0:
             artist_json = search_artists()
             traverse_releases(artist_json, filename)
@@ -194,14 +198,15 @@ def main():
                 write_changes(filename, [])
                 print(f"File {filename}.json was cleared!")
             else:
-                print("Clearing file aborted.")
+                print("Clearing file cancelled.")
         elif action == 2:
             confirm = input("Are you sure? This cannot be undone. Y/N: ")
             if confirm.lower() == "y":
                 os.remove(f"{filename}.json")
                 print(f"File {filename}.json was deleted!")
             else:
-                print("Deleting file aborted.")
+                print("Deleting file canceled.")
+
 
         print()
         action = input("Continue file modification? Y/N: ")
