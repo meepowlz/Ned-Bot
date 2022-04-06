@@ -7,7 +7,6 @@ import requests
 """
 MusicBrainz API root url
 https://musicbrainz.org/ws/2/
-
 Allows a user to search for an artist
 and extract track data to a json file
 """
