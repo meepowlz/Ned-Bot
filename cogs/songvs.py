@@ -27,7 +27,7 @@ def check_id(id):
 
 
 def random_song():
-    with open("honne_data.json", "r") as file:
+    with open(r"../data/honne_data.json", "r") as file:
         songs = json.load(file)
 
     while True:
