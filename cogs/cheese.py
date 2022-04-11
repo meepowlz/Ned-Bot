@@ -43,8 +43,8 @@ class Cheese:
 # mark.slice_cheese(3)
 # mark.check_moldy()
 
-sally = Cheese("Sally", "Pecorino", 3, 35, 6)
-sally.slice_cheese(5)
+# sally = Cheese("Sally", "Pecorino", 3, 35, 6)
+# sally.slice_cheese(5)
 
 
 # Commands

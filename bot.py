@@ -12,6 +12,7 @@ intents.members = False
 intents.presences = False
 bot = commands.Bot(command_prefix=os.environ["PREFIX"], intents=intents)
 bot.load_extension("cogs.cheese")
+bot.load_extension("cogs.dictionary")
 bot.load_extension("jishaku")
 
 
