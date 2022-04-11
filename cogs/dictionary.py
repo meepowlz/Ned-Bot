@@ -9,25 +9,53 @@ Commands to quickly look up the definition of a word from Discord!
 
 dotenv.load_dotenv()
 
-"""
-query = input("word to search for pls")
 
-search_request = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{query}?key={os.environ['MW_DICTIONARY']}")
-print(search_request.status_code)
-print(search_request)
-results = search_request.json()
-print(results)
+def search_word(query=None):
+	if not query:
+		query = input("Enter a word to look up: ")
 
-for i, word in enumerate(results):
-	terms = word['meta']['stems']
-	pronunciation = word['hwi']['prs'][0]['mw']
-	part_of_speech = word['fl']
-	definitions = word['shortdef']
+	# Looks up the word
+	#try:
+		search_request = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{query}?key={os.environ['MW_DICTIONARY']}")
+		results = search_request.json()
+		print(search_request.status_code)
+		print(results)
+		format_results(results)
+		if not results:
+			print(f"No words were found which matched the search query '{query}'")
+	#except:
+		# what error should this be?
+		print("Search failed")
 
-	print()
-	print(terms, pronunciation, part_of_speech, definitions)
-"""
 
+def format_results(results):
+
+	words = []
+	for i, word in enumerate(results):
+		terms = word['meta']['stems']
+		pronunciation = word['hwi']['prs'][0]['mw']
+		part_of_speech = word['fl']
+		definitions = word['shortdef'][0]
+		print(definitions)
+		word_data = {
+			'terms': terms,
+			'prn' = pronun
+		}
+		"""
+		word_data = {
+			terms,
+			pronunciation,
+			part_of_speech,
+			definitions
+		}
+		"""
+		print()
+		print(word_data)
+		words.append(word_data)
+	return words
+
+
+search_word()
 
 
 @commands.command()
