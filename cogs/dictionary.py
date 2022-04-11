@@ -33,22 +33,20 @@ def format_results(results):
 	words = []
 	for i, word in enumerate(results):
 		terms = word['meta']['stems']
-		pronunciation = word['hwi']['prs'][0]['mw']
-		part_of_speech = word['fl']
-		definitions = word['shortdef'][0]
+		hwi = word.get("hwi", {})
+		prs = hwi.get("prs", {})
+		prs = prs.get(0, {})
+		pronunciation = prs.get("mw")
+		#pronunciation = word.get(['hwi']['prs'][0]['mw'])
+		part_of_speech = word.get("fl")
+		definitions = word.get("shortdef")
 		print(definitions)
 		word_data = {
 			'terms': terms,
-			'prn' = pronun
+			'pronunciation': pronunciation,
+			'part': part_of_speech,
+			'def': definitions
 		}
-		"""
-		word_data = {
-			terms,
-			pronunciation,
-			part_of_speech,
-			definitions
-		}
-		"""
 		print()
 		print(word_data)
 		words.append(word_data)
