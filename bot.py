@@ -3,7 +3,6 @@ import os
 import dotenv
 import discord
 import lyrics
-import listenbrainz
 
 dotenv.load_dotenv()
 
