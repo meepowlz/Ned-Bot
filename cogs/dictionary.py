@@ -68,9 +68,11 @@ async def define(ctx: commands.Context, *, word: str):
 	base_embed = discord.Embed(color=ctx.author.color)
 	base_embed.set_author(name=f"{ctx.author.display_name} searched for \"{word}\"", icon_url=ctx.author.avatar.url)
 	embeds = list(display_results(results, base_embed))
+	# view = discord.ui.View
+	# view.add_item(discord.ui.Button)
 	await ctx.send(embed=embeds[0])
 
 
-def setup(bot):
+async def setup(bot):
 	bot.add_command(define)
 

@@ -59,6 +59,6 @@ async def cheesetime(ctx: commands.Context):
 	await ctx.send(f"{ctx.author.display_name}, it is ALWAYS cheese time.")
 
 
-def setup(bot):
+async def setup(bot):
 	bot.add_command(otter)
 	bot.add_command(cheesetime)

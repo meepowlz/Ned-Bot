@@ -10,9 +10,15 @@ intents = discord.Intents.all()
 intents.members = False
 intents.presences = False
 bot = commands.Bot(command_prefix=os.environ["PREFIX"], intents=intents)
-bot.load_extension("cogs.cheese")
-bot.load_extension("cogs.dictionary")
-bot.load_extension("jishaku")
+
+
+@bot.event
+async def on_ready():
+	await bot.load_extension("cogs.cheese")
+	await bot.load_extension("cogs.dictionary")
+	await bot.load_extension("cogs.secret")
+	#await bot.load_extension("jishaku")
+	#lyric.start()
 
 
 # A list of keywords for Ned to look for
@@ -24,11 +30,11 @@ async def cheeseyay(ctx: commands.Context, *, name: str = None):
 	await ctx.send(f"yaycheese {ctx.author.nick} {name or ''}")
 
 
-@bot.command()
-async def gabiplaying(ctx: commands.Context):
-	current, recent = listenbrainz.user_recent_activity()
-	await ctx.send(current)
-	await ctx.send(recent)
+# @bot.command()
+# async def gabiplaying(ctx: commands.Context):
+# 	current, recent = listenbrainz.user_recent_activity()
+# 	await ctx.send(current)
+# 	await ctx.send(recent)
 
 
 @bot.command()
@@ -37,11 +43,11 @@ async def lyric(ctx: commands.Context):
 	await ctx.send(lyric)
 
 
-@tasks.loop(hours=4)
-async def lyric():
-	channel = await bot.fetch_channel(893887834396712960)
-	lyric = lyrics.random_lyric(lyrics.lyrics)
-	await channel.send(lyric)
+# @tasks.loop(hours=4)
+# async def lyric():
+# 	channel = await bot.fetch_channel(893887834396712960)
+# 	lyric = lyrics.random_lyric(lyrics.lyrics)
+# 	await channel.send(lyric)
 
 
 @bot.event
@@ -56,7 +62,6 @@ async def on_message(message: discord.Message):
 
 
 try:
-	lyric.start()
 	bot.run(os.environ["TOKEN"])
 except KeyboardInterrupt:
 	bot.close()

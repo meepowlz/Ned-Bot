@@ -1,5 +1,6 @@
-git+https://github.com/rapptz/discord.py
+discord.py
 python-dotenv
 requests
 jishaku
 discord
+datetime
