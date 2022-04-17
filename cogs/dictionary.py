@@ -16,7 +16,6 @@ def search_word(query):
 	search_request = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{query}?key={os.environ['MW_DICTIONARY']}")
 	if 200 <= search_request.status_code < 300:
 		results = search_request.json()
-		print(results)
 		if not results:
 			return f"No words were found which matched the search query '{query}'"
 		else:
@@ -49,9 +48,6 @@ def display_results(words, base_embed):
 	for word in words:
 		embed = base_embed.copy()
 		terms = ", ".join(word['terms'])
-		print(terms)
-		print(word['pronunciation'])
-		print(word['part'])
 		definitions = "\n\u2022 ".join(word['def'])
 		definitions = "\u2022 " + definitions
 		embed.title = f"Definition for \"{terms}\""
@@ -68,9 +64,12 @@ async def define(ctx: commands.Context, *, word: str):
 	base_embed = discord.Embed(color=ctx.author.color)
 	base_embed.set_author(name=f"{ctx.author.display_name} searched for \"{word}\"", icon_url=ctx.author.avatar.url)
 	embeds = list(display_results(results, base_embed))
-	# view = discord.ui.View
-	# view.add_item(discord.ui.Button)
-	await ctx.send(embed=embeds[0])
+	view = discord.ui.View()
+	previous_btn = discord.ui.Button(label="Previous")
+	next_btn = discord.ui.Button(label="Next")
+	view.add_item(previous_btn)
+	view.add_item(next_btn)
+	await ctx.send(embed=embeds[0], view=view)
 
 
 async def setup(bot):
