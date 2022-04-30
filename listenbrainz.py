@@ -8,6 +8,16 @@ username: twitch0001
 /1/stats/user/(user_name)/recordings
 """
 
+"""
+Discarded command
+
+@bot.command()
+async def gabiplaying(ctx: commands.Context):
+	current, recent = listenbrainz.user_recent_activity()
+	await ctx.send(current)
+	await ctx.send(recent)
+"""
+
 import requests
 
 

@@ -3,6 +3,7 @@ import requests
 import dotenv
 import os
 import discord
+#from utils import paginator
 
 """
 Commands to quickly look up the definition of a word from Discord!
@@ -11,17 +12,21 @@ Commands to quickly look up the definition of a word from Discord!
 dotenv.load_dotenv()
 
 
+class SearchException(Exception):
+	pass
+
+
 def search_word(query):
 	# Looks up the word
 	search_request = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{query}?key={os.environ['MW_DICTIONARY']}")
 	if 200 <= search_request.status_code < 300:
 		results = search_request.json()
 		if not results:
-			return f"No words were found which matched the search query '{query}'"
+			raise SearchException(f"No words were found which matched the search query '{query}'")
 		else:
 			return format_results(results)
 	else:
-		return "Search failed"
+		raise SearchException("Search failed")
 
 
 def format_results(results):
@@ -47,6 +52,7 @@ def format_results(results):
 def display_results(words, base_embed):
 	for word in words:
 		embed = base_embed.copy()
+		print("Word: ", word)
 		terms = ", ".join(word['terms'])
 		definitions = "\n\u2022 ".join(word['def'])
 		definitions = "\u2022 " + definitions
@@ -60,15 +66,25 @@ def display_results(words, base_embed):
 @commands.command()
 async def define(ctx: commands.Context, *, word: str):
 	await ctx.send("learning english...")
-	results = search_word(word)
+	# get words
+	try:
+		results = search_word(word)
+	except SearchException as error:
+		return await ctx.send(str(error))
+
+	# embed stuff
 	base_embed = discord.Embed(color=ctx.author.color)
 	base_embed.set_author(name=f"{ctx.author.display_name} searched for \"{word}\"", icon_url=ctx.author.avatar.url)
 	embeds = list(display_results(results, base_embed))
+
+	# view stuff
 	view = discord.ui.View()
 	previous_btn = discord.ui.Button(label="Previous")
 	next_btn = discord.ui.Button(label="Next")
 	view.add_item(previous_btn)
 	view.add_item(next_btn)
+
+	# display embed
 	await ctx.send(embed=embeds[0], view=view)
 
 

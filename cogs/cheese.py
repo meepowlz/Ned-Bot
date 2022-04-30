@@ -1,6 +1,6 @@
 from discord.ext import commands
 
-# Cheese stuff
+# Class stuff
 
 
 class Cheese:
@@ -47,7 +47,57 @@ class Cheese:
 # sally.slice_cheese(5)
 
 
+# Inheritance with toast
+
+# just makes a bread placeholder
+main_bread = None
+
+
+class Bread:
+
+	def __init__(self, name, variety):
+		self.name = name
+		self.variety = variety
+
+	def bread_info(self):
+		return f"{self.name} is of variety {self.variety}"
+
+
+class Toastable(Bread):
+
+	def __init__(self, name="Bread", variety="White", is_toast_yet=False):
+		super().__init__(name, variety)
+		self.name = name
+		self.variety = variety
+		self.toast_status = is_toast_yet
+
+	def toast_bread(self):
+		if self.toast_status:
+			return "Already toast"
+		else:
+			self.toast_status = True
+			return "Toasted!"
+
+
 # Commands
+
+
+@commands.command()
+async def bread(ctx: commands.Context):
+	global main_bread
+	main_bread = Toastable()
+	await ctx.send(f"{ctx.author.display_name} just made bread")
+
+
+@commands.command()
+async def toast(ctx: commands.Context):
+	global main_bread
+	if main_bread:
+		toasted = main_bread.toast_bread()
+		await ctx.send(toasted)
+	else:
+		await ctx.send("Bread doesn't exist yet, silly goose")
+
 
 @commands.command()
 async def otter(ctx: commands.Context):
@@ -59,6 +109,14 @@ async def cheesetime(ctx: commands.Context):
 	await ctx.send(f"{ctx.author.display_name}, it is ALWAYS cheese time.")
 
 
+@commands.command()
+async def cheeseyay(ctx: commands.Context, *, name: str = None):
+	await ctx.send(f"yaycheese {ctx.author.nick} {name or ''}")
+
+
 async def setup(bot):
+	bot.add_command(bread)
+	bot.add_command(toast)
 	bot.add_command(otter)
 	bot.add_command(cheesetime)
+	bot.add_command(cheeseyay)
