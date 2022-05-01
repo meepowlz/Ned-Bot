@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands, tasks
 
+import bot
 import lyrics
 
 # A list of keywords for Ned to look for
@@ -10,7 +11,7 @@ EAST_LIST = ["whats up","what's up", "whats up?", "what's up?", "wassup", "wassu
 class Pilots(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
-		#self.lyric_loop.start()
+		self.lyric_loop.start()
 
 	@commands.command()
 	async def lyric(self, ctx: commands.Context):
@@ -19,7 +20,7 @@ class Pilots(commands.Cog):
 
 	@tasks.loop(hours=4)
 	async def lyric_loop(self):
-		channel = await self.bot.fetch_channel(893887834396712960)
+		channel = self.bot.get_channel(self.bot.lyrics_channel_id)
 		lyric = lyrics.random_lyric(lyrics.lyrics)
 		await channel.send(lyric)
 

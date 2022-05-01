@@ -72,7 +72,7 @@ class Songvs(commands.Cog):
 
     @tasks.loop(hours=24)
     async def songvs_loop(self):
-        channel = await self.bot.fetch_channel(893887834396712960)
+        channel = self.bot.get_channel(self.bot.songvs_channel_id)
         await self.create_matchup(channel, channel.guild.id)
 
 
