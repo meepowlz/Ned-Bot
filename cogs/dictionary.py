@@ -3,7 +3,8 @@ import requests
 import dotenv
 import os
 import discord
-#from utils import paginator
+from .utils import paginator
+
 
 """
 Commands to quickly look up the definition of a word from Discord!
@@ -50,7 +51,7 @@ def format_results(results):
 
 
 def display_results(words, base_embed):
-	for word in words:
+	for i, word in enumerate(words):
 		embed = base_embed.copy()
 		print("Word: ", word)
 		terms = ", ".join(word['terms'])
@@ -60,12 +61,12 @@ def display_results(words, base_embed):
 		embed.description = f"Pronounced: {word['pronunciation']}\n" \
 							f"Part of speech: {word['part']}"
 		embed.add_field(name="Definition", value=definitions)
+		embed.set_footer(text=f"Definition #{i+1}")
 		yield embed
 
 
 @commands.command()
 async def define(ctx: commands.Context, *, word: str):
-	await ctx.send("learning english...")
 	# get words
 	try:
 		results = search_word(word)
@@ -78,11 +79,7 @@ async def define(ctx: commands.Context, *, word: str):
 	embeds = list(display_results(results, base_embed))
 
 	# view stuff
-	view = discord.ui.View()
-	previous_btn = discord.ui.Button(label="Previous")
-	next_btn = discord.ui.Button(label="Next")
-	view.add_item(previous_btn)
-	view.add_item(next_btn)
+	view = paginator.View(embeds)
 
 	# display embed
 	await ctx.send(embed=embeds[0], view=view)
@@ -90,4 +87,3 @@ async def define(ctx: commands.Context, *, word: str):
 
 async def setup(bot):
 	bot.add_command(define)
-
