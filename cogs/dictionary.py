@@ -53,7 +53,6 @@ def format_results(results):
 def display_results(words, base_embed):
 	for i, word in enumerate(words):
 		embed = base_embed.copy()
-		print("Word: ", word)
 		terms = ", ".join(word['terms'])
 		definitions = "\n\u2022 ".join(word['def'])
 		definitions = "\u2022 " + definitions
