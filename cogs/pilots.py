@@ -1,8 +1,7 @@
-from discord.ext import commands, tasks
 import discord
-import lyrics
-from .utils import paginator
+from discord.ext import commands, tasks
 
+import lyrics
 
 # A list of keywords for Ned to look for
 EAST_LIST = ["whats up","what's up", "whats up?", "what's up?", "wassup", "wassup?"]
@@ -17,11 +16,6 @@ class Pilots(commands.Cog):
 	async def lyric(self, ctx: commands.Context):
 		lyric = lyrics.random_lyric(lyrics.lyrics)
 		await ctx.send(lyric)
-
-	@commands.command()
-	async def test(self, ctx: commands.Context):
-		view = paginator.View()
-		await ctx.send("stuff", view=view)
 
 	@tasks.loop(hours=4)
 	async def lyric_loop(self):
