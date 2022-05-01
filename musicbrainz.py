@@ -38,7 +38,7 @@ def write_changes(filename, changes):
         json.dump(changes, file, indent=4)
 
 
-def convert_length(milliseconds=0):
+def convert_length(milliseconds):
     """
     Converts time from ms to minutes:seconds
     :param milliseconds: int
@@ -66,9 +66,10 @@ def traverse_tracks(tracks, release, action, selected=None):
         # title, number, length, id, release date
         title = track['title']
         position = track['number']
-        length = convert_length(tracks[i]['length'])
+        length = convert_length(tracks[i]['length'] or 0)
         id = track['recording']['id']
-        release_date = track['recording']['first-release-date']
+        release_date = track.get('recording', {})
+        release_date = release_date.get('first-release-date', None)
 
         # Display or select track data
         if action == "display":
@@ -98,11 +99,11 @@ def traverse_releases(data, filename: str) -> None:
     """
     # Create list to store data to be added
     selected = []
-    for i, release in enumerate(data['releases']):
+    for i, release in enumerate(data):
 
         # Print release information
-        release_title = data['releases'][i]['title']
-        release_mbid = data['releases'][i]['id']
+        release_title = data[i]['title']
+        release_mbid = data[i]['id']
         print(f"Release: {release_title}")
         print(f"MBID: {release_mbid}")
 
@@ -137,7 +138,6 @@ def traverse_releases(data, filename: str) -> None:
             break
         # Saves changes
         print()
-
     write_changes(filename, selected)
 
 
@@ -163,13 +163,30 @@ def search_artists():
     artist_selected = int(input("Enter the artist number you would like to select: "))
     artist_selected = artist_json[(artist_selected - 1)]
     print(f"Artist {artist_selected['name']} was selected.")
+
+    # Looks up all artist releases
     print(f"Looking up data for {artist_selected['name']}...")
+    artist_json = lookup_releases(artist_selected['id'])
+    full_data = artist_json['releases']
+
+    # Checks if more than 100 releases are present
+    release_count = artist_json['release-count']
+    offset = 0
+    while release_count > 100:
+        offset += 100
+        release_count -= 100
+        full_data.extend(lookup_releases(artist_selected['id'], offset)['releases'])
+
+    return full_data
+
+
+def lookup_releases(artist_mbid, offset=0):
     time.sleep(1)
-    artist_request = requests.get(f"https://musicbrainz.org/ws/2/artist/{artist_selected['id']}?inc=releases&fmt=json")
+    artist_request = requests.get(
+        f"http://musicbrainz.org/ws/2/release?artist={artist_mbid}&fmt=json&limit=100&offset={offset}")
     artist_json = artist_request.json()
     print(f"Data found!")
     print()
-
     return artist_json
 
 
@@ -201,7 +218,7 @@ def main():
         elif action == 2:
             confirm = input("Are you sure? This cannot be undone. Y/N: ")
             if confirm.lower() == "y":
-                os.remove(f"{filename}.json")
+                os.remove(f"data\{filename}.json")
                 print(f"File {filename}.json was deleted!")
             else:
                 print("Deleting file canceled.")

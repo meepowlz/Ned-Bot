@@ -1,115 +1,227 @@
 [
     {
-        "release": "Twenty One Pilots",
-        "title": "Implicit Demand for Proof",
+        "release": "Trench",
+        "title": "Jumpsuit",
         "position": "1",
-        "length": "4:51",
-        "id": "d0ff9963-2192-48d2-9a94-6091cb3fb148",
-        "release_date": "2009-12-29"
+        "length": "3:59",
+        "id": "4f8fd3f9-b91d-40c9-b215-8f83aaa0611e",
+        "release_date": "2018-07-11"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Fall Away",
+        "release": "Trench",
+        "title": "Levitate",
         "position": "2",
-        "length": "3:02",
-        "id": "8292936e-fdba-4dfd-85e7-fb0854bfebdb",
-        "release_date": "2009-12-29"
+        "length": "2:26",
+        "id": "eec9e700-7a2d-40bb-96cc-a897a5bd601d",
+        "release_date": "2018-08-08"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "The Pantaloon",
+        "release": "Trench",
+        "title": "Morph",
         "position": "3",
-        "length": "3:33",
-        "id": "ff235a5d-816f-4d73-b141-075a85e1f7a1",
-        "release_date": "2009-12-29"
+        "length": "4:19",
+        "id": "38cc0148-b284-4565-a5e4-e017395c3b00",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Addict with a Pen",
+        "release": "Trench",
+        "title": "My Blood",
         "position": "4",
-        "length": "4:46",
-        "id": "d40533c7-6989-44e8-8809-e50f20469a66",
-        "release_date": "2009-12-29"
+        "length": "3:49",
+        "id": "621c2228-b6bc-4af5-881e-d76fcea75e6d",
+        "release_date": "2018-08-27"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Friend, Please",
+        "release": "Trench",
+        "title": "Chlorine",
         "position": "5",
-        "length": "4:12",
-        "id": "1b9ae711-cc2a-4f4d-b0db-c40048431f70",
-        "release_date": "2009-12-29"
+        "length": "5:25",
+        "id": "21625df1-4300-4eb3-bb34-de0c261aba2e",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "March to the Sea",
+        "release": "Trench",
+        "title": "Smithereens",
         "position": "6",
-        "length": "5:31",
-        "id": "1bb9296b-3e1c-4e5a-af91-47b58a66bfd9",
-        "release_date": "2009-12-29"
+        "length": "2:57",
+        "id": "d93a5977-2c42-478b-808b-d6994779b287",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Johnny Boy",
+        "release": "Trench",
+        "title": "Neon Gravestones",
         "position": "7",
-        "length": "4:39",
-        "id": "9a2dc667-65cc-43e5-8dfa-11e715858a0a",
-        "release_date": "2009-12-29"
+        "length": "4:00",
+        "id": "3431818f-7925-4071-b618-4c50f0509520",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Oh, Ms. Believer",
+        "release": "Trench",
+        "title": "The Hype",
         "position": "8",
-        "length": "3:37",
-        "id": "38785e47-64b8-45ef-b574-819beea54d96",
-        "release_date": "2009-12-29"
+        "length": "4:25",
+        "id": "fceeee63-4864-4916-a298-b26c1c80b196",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Air Catcher",
+        "release": "Trench",
+        "title": "Nico and the Niners",
         "position": "9",
-        "length": "4:14",
-        "id": "d4aec95a-6e86-45f5-aa62-0eec02aede76",
-        "release_date": "2009-12-29"
+        "length": "3:47",
+        "id": "f5132c2a-203e-454a-9518-e994e40daf3a",
+        "release_date": "2018-07-11"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Trapdoor",
+        "release": "Trench",
+        "title": "Cut My Lip",
         "position": "10",
-        "length": "4:37",
-        "id": "0942ef06-0c30-4afd-b581-6a721aaa3315",
-        "release_date": "2009-12-29"
+        "length": "4:43",
+        "id": "24e6c878-c1a2-4e64-8d8f-a229f9b6d1ed",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "A Car, a Torch, a Death",
+        "release": "Trench",
+        "title": "Bandito",
         "position": "11",
-        "length": "4:33",
-        "id": "c0378f91-2876-4a09-b0a1-2c1f9daf1c31",
-        "release_date": "2009-12-29"
+        "length": "5:31",
+        "id": "d9cf1e5b-e83d-4534-a024-f3064dd0a37c",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Taxi Cab",
+        "release": "Trench",
+        "title": "Pet Cheetah",
         "position": "12",
-        "length": "4:45",
-        "id": "5aba5334-f4f9-40eb-8a69-e63748bba6d5",
-        "release_date": "2009-12-29"
+        "length": "3:18",
+        "id": "ebeb8adc-37b3-40b7-9ef0-475f59dc3d04",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Before You Start Your Day",
+        "release": "Trench",
+        "title": "Legend",
         "position": "13",
-        "length": "3:53",
-        "id": "fc2da0b1-595a-4172-9e95-8d8aa5b5b9dd",
-        "release_date": "2009-12-29"
+        "length": "2:53",
+        "id": "f19fcfc1-dd92-4fb6-b3eb-c4b301af3d68",
+        "release_date": "2018-10-05"
     },
     {
-        "release": "Twenty One Pilots",
-        "title": "Isle of Flightless Birds",
+        "release": "Trench",
+        "title": "Leave the City",
         "position": "14",
-        "length": "5:45",
-        "id": "b1c16ce2-0a9d-4321-a7b9-32f8c0fd885f",
-        "release_date": "2009-12-29"
+        "length": "4:41",
+        "id": "a381b7aa-022d-4d02-83a4-2c9fd7979c43",
+        "release_date": "2018-10-05"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Heavydirtysoul",
+        "position": "1",
+        "length": "3:54",
+        "id": "4c2c3614-265e-4726-8692-9ef98fff978b",
+        "release_date": "2015-05-15"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Stressed Out",
+        "position": "2",
+        "length": "3:22",
+        "id": "e2b9b868-5aa3-400a-aae2-7c7e9c7d35fd",
+        "release_date": "2015-04-27"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Ride",
+        "position": "3",
+        "length": "3:34",
+        "id": "e034e9ef-6266-46f7-8fdd-46d3b26e1911",
+        "release_date": "2015-05-12"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Fairly Local",
+        "position": "4",
+        "length": "3:27",
+        "id": "6438fd3b-1735-404b-b845-319282e96e9d",
+        "release_date": "2015-03-17"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Tear in My Heart",
+        "position": "5",
+        "length": "3:08",
+        "id": "54beea24-76bd-4a79-830c-ade617e09244",
+        "release_date": "2015-04-06"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Lane Boy",
+        "position": "6",
+        "length": "4:13",
+        "id": "609865c3-cade-4336-bf83-ed7acb905e7a",
+        "release_date": "2015-05-04"
+    },
+    {
+        "release": "Blurryface",
+        "title": "The Judge",
+        "position": "7",
+        "length": "4:57",
+        "id": "16c3c877-95da-4f69-878d-43304124194f",
+        "release_date": "2015-05-15"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Doubt",
+        "position": "8",
+        "length": "3:11",
+        "id": "873c8751-6ca7-4770-bdab-6d95d6a2ffce",
+        "release_date": "2015-05-15"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Polarize",
+        "position": "9",
+        "length": "3:46",
+        "id": "b8d097f8-7743-4c5a-bf1c-1400f82011a5",
+        "release_date": "2015-05-15"
+    },
+    {
+        "release": "Blurryface",
+        "title": "We Don't Believe What's on TV",
+        "position": "10",
+        "length": "2:57",
+        "id": "1eb5a1f0-9d5b-4258-9d44-dace95ba3aca",
+        "release_date": "2015-05-15"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Message Man",
+        "position": "11",
+        "length": "4:00",
+        "id": "ffbcb844-7e3d-45f6-b632-b3ce714370d0",
+        "release_date": "2015-05-15"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Hometown",
+        "position": "12",
+        "length": "3:54",
+        "id": "1808ee9e-3384-4b1f-8fe3-e0c3b68774d9",
+        "release_date": "2015-05-15"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Not Today",
+        "position": "13",
+        "length": "3:58",
+        "id": "4b451a74-6593-42db-ac68-8385c5447f71",
+        "release_date": "2015-05-15"
+    },
+    {
+        "release": "Blurryface",
+        "title": "Goner",
+        "position": "14",
+        "length": "3:56",
+        "id": "6b61004e-6bd4-4a83-b99d-8f193204fcf2",
+        "release_date": "2015-05-15"
     },
     {
         "release": "Regional at Best",
@@ -222,5 +334,413 @@
         "length": "3:38",
         "id": "e8503b24-2da2-4603-9c2b-2a49deb12106",
         "release_date": "2011-07-08"
+    },
+    {
+        "release": "Regional at Best",
+        "title": "House of Gold",
+        "position": "15",
+        "length": "2:54",
+        "id": "6a7036bf-768a-41cb-9189-84a8542fe12b",
+        "release_date": "2011"
+    },
+    {
+        "release": "Regional at Best",
+        "title": "Two",
+        "position": "16",
+        "length": "3:05",
+        "id": "5ca5b812-cae4-4480-9806-fb9ec938420b",
+        "release_date": "2011"
+    },
+    {
+        "release": "TOPxMM",
+        "title": "Heathens",
+        "position": "1",
+        "length": "4:34",
+        "id": "3fc1e621-ae11-4ea6-898f-6ce9754d71c8",
+        "release_date": "2016-12-19"
+    },
+    {
+        "release": "TOPxMM",
+        "title": "Heavydirtysoul",
+        "position": "2",
+        "length": "4:00",
+        "id": "f33b385a-8192-4395-b5a5-fcabc725aa33",
+        "release_date": "2016-12-19"
+    },
+    {
+        "release": "TOPxMM",
+        "title": "Ride",
+        "position": "3",
+        "length": "3:48",
+        "id": "d5102543-ed05-49f1-a14a-3449edd32856",
+        "release_date": "2016-12-19"
+    },
+    {
+        "release": "TOPxMM",
+        "title": "Tear In My Heart",
+        "position": "4",
+        "length": "3:48",
+        "id": "1e93e950-3f0f-4009-bac4-b1a70af0c0d6",
+        "release_date": "2016-12-19"
+    },
+    {
+        "release": "TOPxMM",
+        "title": "Lane Boy",
+        "position": "5",
+        "length": "5:21",
+        "id": "f1e4b199-320e-4427-9c62-814c861d17d4",
+        "release_date": "2016-12-19"
+    },
+    {
+        "release": "Cut My Lip (40.6782\u00b0N, 73.9442\u00b0 W)",
+        "title": "Cut My Lip (40.6782\u00b0N, 73.9442\u00b0 W)",
+        "position": "1",
+        "length": "4:20",
+        "id": "1ef75816-bb26-4869-8006-99acd7297e84",
+        "release_date": "2019-07-11"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Implicit Demand for Proof",
+        "position": "1",
+        "length": "4:50",
+        "id": "d0ff9963-2192-48d2-9a94-6091cb3fb148",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Fall Away",
+        "position": "2",
+        "length": "3:01",
+        "id": "8292936e-fdba-4dfd-85e7-fb0854bfebdb",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "The Pantaloon",
+        "position": "3",
+        "length": "3:32",
+        "id": "ff235a5d-816f-4d73-b141-075a85e1f7a1",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Addict with a Pen",
+        "position": "4",
+        "length": "4:45",
+        "id": "d40533c7-6989-44e8-8809-e50f20469a66",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Friend, Please",
+        "position": "5",
+        "length": "4:12",
+        "id": "1b9ae711-cc2a-4f4d-b0db-c40048431f70",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "March to the Sea",
+        "position": "6",
+        "length": "5:30",
+        "id": "1bb9296b-3e1c-4e5a-af91-47b58a66bfd9",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Johnny Boy",
+        "position": "7",
+        "length": "4:38",
+        "id": "9a2dc667-65cc-43e5-8dfa-11e715858a0a",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Oh Ms. Believer",
+        "position": "8",
+        "length": "3:36",
+        "id": "38785e47-64b8-45ef-b574-819beea54d96",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Air Catcher",
+        "position": "9",
+        "length": "4:13",
+        "id": "d4aec95a-6e86-45f5-aa62-0eec02aede76",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Trapdoor",
+        "position": "10",
+        "length": "4:35",
+        "id": "0942ef06-0c30-4afd-b581-6a721aaa3315",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "A Car, a Torch, a Death",
+        "position": "11",
+        "length": "4:32",
+        "id": "c0378f91-2876-4a09-b0a1-2c1f9daf1c31",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Taxi Cab",
+        "position": "12",
+        "length": "4:44",
+        "id": "5aba5334-f4f9-40eb-8a69-e63748bba6d5",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Before You Start Your Day",
+        "position": "13",
+        "length": "3:52",
+        "id": "fc2da0b1-595a-4172-9e95-8d8aa5b5b9dd",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Twenty One Pilots",
+        "title": "Isle of Flightless Birds",
+        "position": "14",
+        "length": "5:44",
+        "id": "b1c16ce2-0a9d-4321-a7b9-32f8c0fd885f",
+        "release_date": "2009-12-29"
+    },
+    {
+        "release": "Vessel",
+        "title": "Ode to Sleep",
+        "position": "1",
+        "length": "5:08",
+        "id": "39914af9-1118-42c0-b7ad-d4c19040c0e0",
+        "release_date": "2012-07-17"
+    },
+    {
+        "release": "Vessel",
+        "title": "Holding on to You",
+        "position": "2",
+        "length": "4:23",
+        "id": "09a1b444-afeb-47a3-a47a-888092727ac5",
+        "release_date": "2012-09-11"
+    },
+    {
+        "release": "Vessel",
+        "title": "Migraine",
+        "position": "3",
+        "length": "3:59",
+        "id": "5bbd0310-4e03-44b7-aba5-89437805a988",
+        "release_date": "2012-07-17"
+    },
+    {
+        "release": "Vessel",
+        "title": "House of Gold",
+        "position": "4",
+        "length": "2:43",
+        "id": "f59dc306-8aa0-4c65-a00d-bb2bd87d61cc",
+        "release_date": "2012-12-26"
+    },
+    {
+        "release": "Vessel",
+        "title": "Car Radio",
+        "position": "5",
+        "length": "4:27",
+        "id": "12f72ce3-6df3-4a46-8598-11a7f0e73e1b",
+        "release_date": "2012-12-26"
+    },
+    {
+        "release": "Vessel",
+        "title": "Semi\u2010Automatic",
+        "position": "6",
+        "length": "4:13",
+        "id": "8c144b52-dae6-493a-b3bd-e7c474416d47",
+        "release_date": "2012-12-26"
+    },
+    {
+        "release": "Vessel",
+        "title": "Screen",
+        "position": "7",
+        "length": "3:49",
+        "id": "f7c6a31a-b85c-4b19-b602-a672390a8858",
+        "release_date": "2012-12-26"
+    },
+    {
+        "release": "Vessel",
+        "title": "The Run and Go",
+        "position": "8",
+        "length": "3:49",
+        "id": "45571382-025b-41fa-81e5-2e02b693f99e",
+        "release_date": "2012-12-26"
+    },
+    {
+        "release": "Vessel",
+        "title": "Fake You Out",
+        "position": "9",
+        "length": "3:51",
+        "id": "b1c84ea0-8361-40e6-904b-a8a78e242b1a",
+        "release_date": "2012-12-26"
+    },
+    {
+        "release": "Vessel",
+        "title": "Guns for Hands",
+        "position": "10",
+        "length": "4:33",
+        "id": "1b60a734-79a7-4f7c-baa3-4ec637fa0729",
+        "release_date": "2012-07-17"
+    },
+    {
+        "release": "Vessel",
+        "title": "Trees",
+        "position": "11",
+        "length": "4:27",
+        "id": "2cceca60-72b8-4c08-ae08-e90fe4c22800",
+        "release_date": "2012-12-26"
+    },
+    {
+        "release": "Vessel",
+        "title": "Truce",
+        "position": "12",
+        "length": "2:22",
+        "id": "f1b400ba-7cf4-45e0-96ad-422b4f78057d",
+        "release_date": "2012-12-26"
+    },
+    {
+        "release": "Chlorine (19.4326\u00b0 N, 99.1332\u00b0 W)",
+        "title": "Chlorine (19.4326\u00b0 N, 99.1332\u00b0 W)",
+        "position": "1",
+        "length": "3:58",
+        "id": "8a06ca01-a493-4965-b4a2-6b004141ac7b",
+        "release_date": "2019-06-21"
+    },
+    {
+        "release": "Cancer",
+        "title": "Cancer",
+        "position": "1",
+        "length": "3:56",
+        "id": "98a740ea-8f9d-417c-9915-d13e63fc1d22",
+        "release_date": "2016-09-14"
+    },
+    {
+        "release": "Heathens",
+        "title": "Heathens",
+        "position": "1",
+        "length": "3:15",
+        "id": "3bf798f4-b3fa-4a0b-a7bb-655af72429b2",
+        "release_date": "2016-06-16"
+    },
+    {
+        "release": "Level of Concern",
+        "title": "Level of Concern",
+        "position": "1",
+        "length": "3:40",
+        "id": "bd421cc1-a85e-46dc-86ee-315ad01fdb99",
+        "release_date": "2020-04-09"
+    },
+    {
+        "release": "The Hype (Berlin)",
+        "title": "The Hype (Berlin)",
+        "position": "1",
+        "length": "4:10",
+        "id": "419d8d91-a088-4117-bc6f-7294a83e37a6",
+        "release_date": "2019-10-16"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Good Day",
+        "position": "1",
+        "length": "3:24",
+        "id": "f79ce42e-fc40-4337-b006-ac1467969f22",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Choker",
+        "position": "2",
+        "length": "3:43",
+        "id": "2c9b162f-ab6a-4b20-b286-7ed3a5fd384f",
+        "release_date": "2021-04-30"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Shy Away",
+        "position": "3",
+        "length": "2:55",
+        "id": "50704540-ab4e-4e39-9da4-eb7913c3eb67",
+        "release_date": "2021-04-07"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "The Outside",
+        "position": "4",
+        "length": "3:36",
+        "id": "aef67c6b-31df-4f8f-a30a-ff269debd4c1",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Saturday",
+        "position": "5",
+        "length": "2:52",
+        "id": "62081552-e33d-48b8-bbeb-81faeed464ba",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Never Take It",
+        "position": "6",
+        "length": "3:32",
+        "id": "950b19be-4ff4-40cd-a393-d9a7ea3b4d4e",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Mulberry Street",
+        "position": "7",
+        "length": "3:44",
+        "id": "9354e434-db1c-44f4-bd91-ff7a506b2ead",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Formidable",
+        "position": "8",
+        "length": "2:56",
+        "id": "9913bfd3-9cd0-41fe-a682-8f09b5d16ba7",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Bounce Man",
+        "position": "9",
+        "length": "3:05",
+        "id": "70e6c8b2-c681-4fa5-8dbf-d716b85eb883",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "No Chances",
+        "position": "10",
+        "length": "3:46",
+        "id": "feb4dcb0-0422-40c6-bd09-821eb0512851",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Scaled and Icy",
+        "title": "Redecorate",
+        "position": "11",
+        "length": "4:05",
+        "id": "7eaf6586-8a85-4ca0-820e-351c984137f5",
+        "release_date": "2021-05-21"
+    },
+    {
+        "release": "Christmas Saves the Year",
+        "title": "Christmas Saves the Year",
+        "position": "1",
+        "length": "3:32",
+        "id": "717092a5-d995-4bc8-b4d0-833028fae95c",
+        "release_date": "2020-12-08"
     }
 ]
