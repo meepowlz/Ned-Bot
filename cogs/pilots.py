@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands, tasks
 
-import bot
 import lyrics
 
 # A list of keywords for Ned to look for
