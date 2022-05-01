@@ -1,40 +1,33 @@
 import json
 import os.path
 import random
-from collections import deque
+from collections import deque, defaultdict
+from pathlib import Path
 
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 """
 Randomly selects two songs from datafile
 Displays basic song information in an embed
 Adds reactions for users to vote for their preferred song
 Opens a thread for song discussion
-
-issue - fix pathing somehow so it can be dynamic
 """
 
 server_files = {521178844128870413: "top_data.json", 868961460607389778: "honne_data.json"}
-root = r"C:\Users\Meep\PycharmProjects\Ned-Bot"
-recent_songs_deque = deque([], 20)
 
 
 class Songvs(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.deques = defaultdict(deque)
+        self.songvs_loop.start()
 
-    def check_id(self, data):
-        if data['id'] in recent_songs_deque:
+    def check_id(self, data, guild):
+        if data['id'] in self.deques[guild]:
             return False
         else:
             return True
-
-    # https://stackoverflow.com/questions/1724693/find-a-file-in-python
-    def find(self, name, path):
-        for root, dirs, files in os.walk(path):
-            if name in files:
-                return os.path.join(root, name)
 
     def load_file(self, file_path):
         # loads file data
@@ -42,13 +35,13 @@ class Songvs(commands.Cog):
             data = json.load(file)
         return data
 
-    def random_song(self, data):
+    def random_song(self, data, guild):
         # filters out all recently used songs
-        filtered_songs = list(filter(self.check_id, data))
+        filtered_songs = list(filter(lambda d: self.check_id(d, guild), data))
         # randomly picks a song
         selected_song = random.choice(filtered_songs)
         # adds it to the recently used songs
-        recent_songs_deque.append(selected_song['id'])
+        self.deques[guild].append(selected_song['id'])
 
         return selected_song
 
@@ -59,19 +52,28 @@ class Songvs(commands.Cog):
                               f"Released on: {song['release_date']}")
         return embed
 
-    @commands.command()
-    async def songvs(self, ctx: commands.Context):
-        file_path = self.find(server_files[ctx.guild.id], root)
+    async def create_matchup(self, channel, guild, color=0xFFFFFF):
+        file_path = Path(f"data/{server_files[guild]}")
         data = self.load_file(file_path)
-        song_1 = self.random_song(data)
-        song_2 = self.random_song(data)
-        base_embed = discord.Embed(color=ctx.author.color)
+        song_1 = self.random_song(data, guild)
+        song_2 = self.random_song(data, guild)
+        base_embed = discord.Embed(color=color)
         base_embed.title = f"\"{song_1['title']}\" vs. \"{song_2['title']}\""
         embed = self.build_embed(base_embed, song_1)
         embed = self.build_embed(embed, song_2)
-        message = await ctx.send(embed=embed)
-        await message.add_reaction("<:ottershy:896849222459064320>")
-        await message.add_reaction("<:foreheadkiss:945336297826975835>")
+        message = await channel.send(embed=embed)
+        await message.add_reaction("1\N{COMBINING ENCLOSING KEYCAP}")
+        await message.add_reaction("2\N{COMBINING ENCLOSING KEYCAP}")
+        await message.create_thread(name=f"\"{song_1['title']}\" vs. \"{song_2['title']}\"")
+
+    @commands.command()
+    async def songvs(self, ctx: commands.Context):
+        await self.create_matchup(ctx.channel, ctx.guild.id, ctx.author.color)
+
+    @tasks.loop(hours=24)
+    async def songvs_loop(self):
+        channel = await self.bot.fetch_channel(893887834396712960)
+        await self.create_matchup(channel, channel.guild.id)
 
 
 async def setup(bot):
