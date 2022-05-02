@@ -21,18 +21,19 @@ class Pilots(commands.Cog):
 	@commands.is_owner()
 	async def ned_hello(self, ctx: commands.Context):
 		embed = discord.Embed(color=ctx.guild.me.color)
-		embed.title = "Meet <@Ned#8134>! <a:nedvibe:970466324369260564>"
-		embed.description = "__*Ned is here to make Clique Gang unique!*__\n" \
+		embed.title = "Meet Ned! <a:nedvibe:970466324369260564>"
+		embed.set_author(name=f"{ctx.guild.me.display_name}", icon_url=ctx.guild.me.avatar.url)
+		embed.description = "__*<@940021429414559784> is here to make Clique Gang unique!*__\n" \
 			"He has a variety of features to provide interactive & fun experiences here in our community!\n" \
 			"Made by <@198536490672848896> with help from their lovely partner :heart:"
 		embed.add_field(name="Song vs. Song",
-						value="- Sends a pair of Twenty One Pilots songs to <#Songvschannel>,\
+						value=f"- Sends a pair of Twenty One Pilots songs to <#{self.bot.songvs_channel_id}>,\
 							adding reactions for voting, and creating a thread for discussion\n"
 							"- Vote for your favorite song and defend your position in the thread below!\n"
 							"- Sends a new matchup every 24 hours",
 						inline=False)
 		embed.add_field(name="Lyric Feed",
-						value="- Sends a random Twenty One Pilots lyric to <#Lyricschannel>\n"
+						value=f"- Sends a random Twenty One Pilots lyric to <#{self.bot.lyrics_channel_id}>\n"
 							"- Continue the lyric chain with him!\n"
 							"- Sends a new lyric every 4 hours",
 						inline=False)
@@ -47,7 +48,7 @@ class Pilots(commands.Cog):
 		embed.add_field(name="If you have any questions or issues:",
 						value="Message <@198536490672848896>!",
 						inline=False)
-		await ctx.send("hello", embed=embed)
+		await ctx.send("@here", embed=embed)
 
 	@tasks.loop(hours=4)
 	async def lyric_loop(self):
