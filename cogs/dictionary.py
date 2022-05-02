@@ -20,18 +20,26 @@ class SearchException(Exception):
 def search_word(query):
 	# Looks up the word
 	search_request = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{query}?key={os.environ['MW_DICTIONARY']}")
+
 	if 200 <= search_request.status_code < 300:
 		results = search_request.json()
 		if type(results[0]) is dict:
+			# Formats if words are found
 			return format_results(results)
 		else:
+			# Raises error if no words found
 			raise SearchException(f"No words were found which matched the search query '{query}'")
 	else:
+		# Error if search failed
 		raise SearchException("Search failed")
 
 
 def format_results(results):
-
+	"""
+	Sorts API response data for use in embeds
+	:param results: list
+	:return: list
+	"""
 	words = []
 	for i, word in enumerate(results):
 		terms = word['meta']['stems']
@@ -51,6 +59,12 @@ def format_results(results):
 
 
 def display_results(words, base_embed):
+	"""
+	Creates embeds with each word
+	:param words: list
+	:param base_embed: discord.Embed
+	:return: discord.Embed
+	"""
 	for i, word in enumerate(words):
 		embed = base_embed.copy()
 		terms = ", ".join(word['terms'])
@@ -66,21 +80,21 @@ def display_results(words, base_embed):
 
 @commands.command()
 async def define(ctx: commands.Context, *, word: str):
-	# get words
+	# Get words
 	try:
 		results = search_word(word)
 	except SearchException as error:
 		return await ctx.send(str(error))
 
-	# embed stuff
+	# Embed stuff
 	base_embed = discord.Embed(color=ctx.author.color)
 	base_embed.set_author(name=f"{ctx.author.display_name} searched for \"{word}\"", icon_url=ctx.author.avatar.url)
 	embeds = list(display_results(results, base_embed))
 
-	# view stuff
+	# View stuff
 	view = paginator.View(embeds)
 
-	# display embed
+	# Display embed
 	await ctx.send(embed=embeds[0], view=view)
 
 
