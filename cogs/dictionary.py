@@ -22,10 +22,10 @@ def search_word(query):
 	search_request = requests.get(f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{query}?key={os.environ['MW_DICTIONARY']}")
 	if 200 <= search_request.status_code < 300:
 		results = search_request.json()
-		if not results:
-			raise SearchException(f"No words were found which matched the search query '{query}'")
-		else:
+		if type(results[0]) is dict:
 			return format_results(results)
+		else:
+			raise SearchException(f"No words were found which matched the search query '{query}'")
 	else:
 		raise SearchException("Search failed")
 
