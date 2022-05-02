@@ -67,6 +67,7 @@ class Songvs(commands.Cog):
         await message.create_thread(name=f"\"{song_1['title']}\" vs. \"{song_2['title']}\"")
 
     @commands.command()
+    @commands.is_owner()
     async def songvs(self, ctx: commands.Context):
         await self.create_matchup(ctx.channel, ctx.guild, ctx.author.color)
 
