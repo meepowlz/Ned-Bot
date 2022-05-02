@@ -22,6 +22,7 @@ class Pilots(commands.Cog):
 	async def del_all(self, ctx: commands.Context):
 		while True:
 			await ctx.channel.last_message.delete()
+			await ctx.send("deleted")
 			await asyncio.sleep(1)
 
 	@commands.command()
