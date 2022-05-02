@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands, tasks
-import asyncio
 
 import lyrics
 
@@ -17,13 +16,6 @@ class Pilots(commands.Cog):
 	async def lyric(self, ctx: commands.Context):
 		lyric = lyrics.random_lyric(lyrics.lyrics)
 		await ctx.send(lyric)
-
-	@commands.command()
-	async def del_all(self, ctx: commands.Context):
-		while True:
-			async for message in ctx.channel.history(limit=200):
-				await message.delete()
-			await asyncio.sleep(1)
 
 	@commands.command()
 	@commands.is_owner()
@@ -56,7 +48,7 @@ class Pilots(commands.Cog):
 		embed.add_field(name="If you have any questions or issues:",
 						value="Message <@198536490672848896>!",
 						inline=False)
-		await ctx.send("@here", embed=embed)
+		await ctx.send("@everyone", embed=embed)
 
 	@tasks.loop(hours=4)
 	async def lyric_loop(self):
