@@ -21,10 +21,32 @@ class Pilots(commands.Cog):
 	@commands.is_owner()
 	async def ned_hello(self, ctx: commands.Context):
 		embed = discord.Embed(color=ctx.guild.me.color)
-		embed.title = "Meet <@940021429414559784>! <a:nedvibe:970466324369260564>"
-		embed.description = "**Ned is here to make Clique Gang unique!**\n" \
-							"He has a variety of features to provide interactive & fun experiences here in our community!\n" \
-							"Made by <@198536490672848896> with help from their lovely partner (heart emoji)"
+		embed.title = "Meet <@Ned#8134>! <a:nedvibe:970466324369260564>"
+		embed.description = "__*Ned is here to make Clique Gang unique!*__\n" \
+			"He has a variety of features to provide interactive & fun experiences here in our community!\n" \
+			"Made by <@198536490672848896> with help from their lovely partner :heart:"
+		embed.add_field(name="Song vs. Song",
+						value="- Sends a pair of Twenty One Pilots songs to <#Songvschannel>,\
+							adding reactions for voting, and creating a thread for discussion\n"
+							"- Vote for your favorite song and defend your position in the thread below!\n"
+							"- Sends a new matchup every 24 hours",
+						inline=False)
+		embed.add_field(name="Lyric Feed",
+						value="- Sends a random Twenty One Pilots lyric to <#Lyricschannel>\n"
+							"- Continue the lyric chain with him!\n"
+							"- Sends a new lyric every 4 hours",
+						inline=False)
+		embed.add_field(name="Auto Replies",
+						value="- Talk in the server, and sometimes Ned will reply back :eyes:",
+						inline=False)
+		embed.add_field(name="Commands",
+						value="Bored?\n"
+								"+lyric to send a random Twenty One Pilots lyric\n"
+								"+define \<term> to look up a word",
+						inline=False)
+		embed.add_field(name="If you have any questions or issues:",
+						value="Message <@198536490672848896>!",
+						inline=False)
 		await ctx.send("hello", embed=embed)
 
 	@tasks.loop(hours=4)
