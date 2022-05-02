@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands, tasks
+import asyncio
 
 import lyrics
 
@@ -16,6 +17,12 @@ class Pilots(commands.Cog):
 	async def lyric(self, ctx: commands.Context):
 		lyric = lyrics.random_lyric(lyrics.lyrics)
 		await ctx.send(lyric)
+
+	@commands.command()
+	async def del_all(self, ctx: commands.Context):
+		while True:
+			await ctx.channel.last_message.delete()
+			await asyncio.sleep(1)
 
 	@commands.command()
 	@commands.is_owner()
