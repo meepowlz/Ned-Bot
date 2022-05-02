@@ -20,7 +20,11 @@ class Pilots(commands.Cog):
 	@commands.command()
 	@commands.is_owner()
 	async def ned_hello(self, ctx: commands.Context):
-		embed = discord.Embed()
+		embed = discord.Embed(color=ctx.guild.me.color)
+		embed.title = "Meet <@940021429414559784>! <a:nedvibe:970466324369260564>"
+		embed.description = "**Ned is here to make Clique Gang unique!**\n" \
+							"He has a variety of features to provide interactive & fun experiences here in our community!\n" \
+							"Made by <@198536490672848896> with help from their lovely partner (heart emoji)"
 		await ctx.send("hello", embed=embed)
 
 	@tasks.loop(hours=4)
