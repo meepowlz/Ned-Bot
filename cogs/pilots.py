@@ -17,6 +17,12 @@ class Pilots(commands.Cog):
 		lyric = lyrics.random_lyric(lyrics.lyrics)
 		await ctx.send(lyric)
 
+	@commands.command()
+	@commands.is_owner()
+	async def ned_hello(self, ctx: commands.Context):
+		embed = discord.Embed()
+		await ctx.send("hello", embed=embed)
+
 	@tasks.loop(hours=4)
 	async def lyric_loop(self):
 		channel = self.bot.get_channel(self.bot.lyrics_channel_id)

@@ -52,12 +52,12 @@ class Songvs(commands.Cog):
                               f"Released on: {song['release_date']}")
         return embed
 
-    async def create_matchup(self, channel, guild, color=0xFFFFFF):
-        file_path = Path(f"data/{server_files[guild]}")
+    async def create_matchup(self, channel, guild, color=None):
+        file_path = Path(f"data/{server_files[guild.id]}")
         data = self.load_file(file_path)
         song_1 = self.random_song(data, guild)
         song_2 = self.random_song(data, guild)
-        base_embed = discord.Embed(color=color)
+        base_embed = discord.Embed(color=color or guild.me.color)
         base_embed.title = f"\"{song_1['title']}\" vs. \"{song_2['title']}\""
         embed = self.build_embed(base_embed, song_1)
         embed = self.build_embed(embed, song_2)
@@ -68,12 +68,12 @@ class Songvs(commands.Cog):
 
     @commands.command()
     async def songvs(self, ctx: commands.Context):
-        await self.create_matchup(ctx.channel, ctx.guild.id, ctx.author.color)
+        await self.create_matchup(ctx.channel, ctx.guild, ctx.author.color)
 
     @tasks.loop(hours=24)
     async def songvs_loop(self):
         channel = self.bot.get_channel(self.bot.songvs_channel_id)
-        await self.create_matchup(channel, channel.guild.id)
+        await self.create_matchup(channel, channel.guild)
 
 
 async def setup(bot):
