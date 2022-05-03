@@ -99,8 +99,8 @@ async def build_embed(ctx, data, identity, uid, embed):
 	service_uid = data['serviceUid']
 	origin = data['origin'][0]
 	destination = data['destination'][0]
-	depart_time = origin.get('publicTime', 'workingTime')
-	arrive_time = destination.get('publicTime', 'workingTime')
+	depart_time = origin.get('publicTime', origin['workingTime'])
+	arrive_time = destination.get('publicTime', origin['workingTime'])
 	await ctx.send(origin)
 
 	# Format information in an embed
