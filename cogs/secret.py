@@ -97,20 +97,19 @@ async def build_embed(data, identity, uid, embed):
 	# Organize returned data
 	operator = data['atocName']
 	service_uid = data['serviceUid']
-	#origin = data.get('origin', [{'publicTime': "NA:NA"}])[0]
-	# if not origin['publicTime']:
-	# 	origin = {'publicTime': "NA:NA"}
-	origin = {'publicTime': "NA:NA", 'description': "Unknown"}
+	origin = data['origin']
 	destination = data['destination'][0]
+	depart_time = origin(['publicTime'] or ['workingTime'])[0:2]
+	arrive_time = destination(['publicTime'] or ['workingTime'])[0:2]
 
 	# Format information in an embed
 	embed.title = f"{operator} - Service UID {service_uid}"
 	embed.add_field(name="Departure",
 					value=f"Departing {origin['description']} station\n"
-						  f"Time: {origin['publicTime'][0:2]}:{origin['publicTime'][2:4]}")
+						  f"Time: {depart_time[0:2]}:{depart_time[2:4]}")
 	embed.add_field(name="Arrival",
 					value=f"Arriving at {destination['description']} station\n"
-						  f"Time: {destination['publicTime'][0:2]}:{destination['publicTime'][2:4]}")
+						  f"Time: {arrive_time[0:2]}:{arrive_time[2:4]}")
 	if identity == "800008":
 		temp = random.randint(1, 3)  # Randomly select image to display
 		embed.set_image(url=os.environ[f'SECRET_IMG_{temp}'])
