@@ -2,6 +2,7 @@ import asyncio
 import datetime
 import os
 import random
+import platform
 
 import aiohttp
 import discord
@@ -128,6 +129,7 @@ async def secret(ctx: commands.Context, *, identity: str):
 
 
 async def setup(bot):
-	asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+	if platform.system() == "Windows":
+		asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 	bot.add_command(secret)
 
