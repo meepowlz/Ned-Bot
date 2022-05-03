@@ -86,7 +86,7 @@ async def get_current_datetime():
 	return split_datetime
 
 
-async def build_embed(data, identity, uid, embed):
+async def build_embed(ctx, data, identity, uid, embed):
 	"""
 	Requests service information
 	Displays information in an embed
@@ -101,6 +101,7 @@ async def build_embed(data, identity, uid, embed):
 	destination = data['destination'][0]
 	depart_time = origin.get('publicTime', 'workingTime')
 	arrive_time = destination.get('publicTime', 'workingTime')
+	await ctx.send(origin)
 
 	# Format information in an embed
 	embed.title = f"{operator} - Service UID {service_uid}"
@@ -129,7 +130,7 @@ async def secret(ctx: commands.Context, *, identity: str):
 		return await ctx.send(str(error))
 	base_embed = discord.Embed(color=ctx.author.color)
 	base_embed.set_author(name=f"{ctx.author.display_name} is gay", icon_url=ctx.author.avatar.url)
-	embed = await build_embed(data, identity, uid, base_embed)
+	embed = await build_embed(ctx, ata, identity, uid, base_embed)
 	await ctx.send(embed=embed)
 
 
