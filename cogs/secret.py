@@ -97,10 +97,10 @@ async def build_embed(data, identity, uid, embed):
 	# Organize returned data
 	operator = data['atocName']
 	service_uid = data['serviceUid']
-	origin = data['origin']
+	origin = data['origin'][0]
 	destination = data['destination'][0]
-	depart_time = origin(['publicTime'] or ['workingTime'])[0:2]
-	arrive_time = destination(['publicTime'] or ['workingTime'])[0:2]
+	depart_time = origin.get('publicTime', 'workingTime')
+	arrive_time = destination('publicTime', 'workingTime')
 
 	# Format information in an embed
 	embed.title = f"{operator} - Service UID {service_uid}"
