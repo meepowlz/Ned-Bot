@@ -72,6 +72,7 @@ async def get_current_datetime():
 	:return: dict
 	"""
 	current_datetime = str(datetime.datetime.today())
+	#yesterday_datetime= str(datetime.datetime.)
 	split_date = current_datetime.split("-")
 	split_time = split_date[2][3:len(split_date[2])].split(":")
 	split_datetime = {
@@ -125,7 +126,7 @@ async def secret(ctx: commands.Context, *, identity: str):
 	try:
 		uid, data = await get_service(identity)
 		await ctx.send(uid)
-		await ctx.send(data)
+		#await ctx.send(data)
 	except ServiceException as error:
 		return await ctx.send(str(error))
 	base_embed = discord.Embed(color=ctx.author.color)
