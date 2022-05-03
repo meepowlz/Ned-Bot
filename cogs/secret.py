@@ -1,5 +1,5 @@
 import asyncio
-import datetime
+from datetime import datetime
 import os
 import random
 import platform
@@ -71,8 +71,7 @@ async def get_current_datetime():
 	Gets current date & time, splits into usable format
 	:return: dict
 	"""
-	current_datetime = str(datetime.datetime.today())
-	#yesterday_datetime= str(datetime.datetime.)
+	current_datetime = str(datetime.utcnow())
 	split_date = current_datetime.split("-")
 	split_time = split_date[2][3:len(split_date[2])].split(":")
 	split_datetime = {
