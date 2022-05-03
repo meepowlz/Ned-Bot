@@ -97,6 +97,7 @@ async def build_embed(data, identity, uid, embed):
 	# Organize returned data
 	operator = data['atocName']
 	origin = data.get('origin', [{'publicTime': "NA:NA"}])[0]
+	print(origin)
 	destination = data['destination'][0]
 
 	# Format information in an embed
