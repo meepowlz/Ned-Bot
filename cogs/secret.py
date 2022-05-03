@@ -100,7 +100,7 @@ async def build_embed(ctx, data, identity, uid, embed):
 	origin = data['origin'][0]
 	destination = data['destination'][0]
 	depart_time = origin.get('publicTime', origin['workingTime'])
-	arrive_time = destination.get('publicTime', origin['workingTime'])
+	arrive_time = destination.get('publicTime', destination['workingTime'])
 	await ctx.send(origin)
 
 	# Format information in an embed
@@ -129,7 +129,7 @@ async def secret(ctx: commands.Context, *, identity: str):
 	except ServiceException as error:
 		return await ctx.send(str(error))
 	base_embed = discord.Embed(color=ctx.author.color)
-	base_embed.set_author(name=f"{ctx.author.display_name} is gay", icon_url=ctx.author.avatar.url)
+	base_embed.set_author(name=f"{ctx.author.display_name}", icon_url=ctx.author.avatar.url)
 	embed = await build_embed(ctx, data, identity, uid, base_embed)
 	await ctx.send(embed=embed)
 
