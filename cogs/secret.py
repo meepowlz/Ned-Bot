@@ -96,14 +96,15 @@ async def build_embed(data, identity, uid, embed):
 	"""
 	# Organize returned data
 	operator = data['atocName']
-	# origin = data.get('origin', [{'publicTime': "NA:NA"}])[0]
+	service_uid = data['serviceUid']
+	#origin = data.get('origin', [{'publicTime': "NA:NA"}])[0]
 	# if not origin['publicTime']:
 	# 	origin = {'publicTime': "NA:NA"}
 	origin = {'publicTime': "NA:NA", 'description': "Unknown"}
 	destination = data['destination'][0]
 
 	# Format information in an embed
-	embed.title = f"{operator} - Service UID {uid}"
+	embed.title = f"{operator} - Service UID {service_uid}"
 	embed.add_field(name="Departure",
 					value=f"Departing {origin['description']} station\n"
 						  f"Time: {origin['publicTime'][0:2]}:{origin['publicTime'][2:4]}")
