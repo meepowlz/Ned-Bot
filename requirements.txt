@@ -5,3 +5,4 @@ jishaku
 discord
 datetime
 bs4
+aiohttp
