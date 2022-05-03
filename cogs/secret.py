@@ -99,7 +99,7 @@ async def build_embed(data, identity, uid, embed):
 	# origin = data.get('origin', [{'publicTime': "NA:NA"}])[0]
 	# if not origin['publicTime']:
 	# 	origin = {'publicTime': "NA:NA"}
-	origin = {'publicTime': "NA:NA"}
+	origin = {'publicTime': "NA:NA", 'description': "Unknown"}
 	destination = data['destination'][0]
 
 	# Format information in an embed
