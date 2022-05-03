@@ -130,7 +130,7 @@ async def secret(ctx: commands.Context, *, identity: str):
 		return await ctx.send(str(error))
 	base_embed = discord.Embed(color=ctx.author.color)
 	base_embed.set_author(name=f"{ctx.author.display_name} is gay", icon_url=ctx.author.avatar.url)
-	embed = await build_embed(ctx, ata, identity, uid, base_embed)
+	embed = await build_embed(ctx, data, identity, uid, base_embed)
 	await ctx.send(embed=embed)
 
 
