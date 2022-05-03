@@ -4,6 +4,7 @@ import aiohttp
 import requests
 from bs4 import BeautifulSoup
 import discord
+from datetime import datetime
 
 # https://beautiful-soup-4.readthedocs.io/en/latest/#searching-the-tree
 
@@ -46,5 +47,17 @@ async def get_service_uid(train_headcode):
             print(f"UID: {uid}")
     return uid
 
-asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-asyncio.run(get_service_uid(train_headcode))
+
+current_datetime = str(datetime.utcnow())
+split_date = current_datetime.split("-")
+split_time = split_date[2][3:len(split_date[2])].split(":")
+split_datetime = {
+    "year": split_date[0],
+    "month": split_date[1],
+    "day": split_date[2][0:2],
+    "hour": split_time[0],
+    "min": split_time[1],
+    "sec": split_time[2][0:2],
+    "ms": split_time[2][3:len(split_time[2])]
+}
+print(current_datetime)
