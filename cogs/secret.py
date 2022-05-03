@@ -100,7 +100,7 @@ async def build_embed(data, identity, uid, embed):
 	origin = data['origin'][0]
 	destination = data['destination'][0]
 	depart_time = origin.get('publicTime', 'workingTime')
-	arrive_time = destination('publicTime', 'workingTime')
+	arrive_time = destination.get('publicTime', 'workingTime')
 
 	# Format information in an embed
 	embed.title = f"{operator} - Service UID {service_uid}"
