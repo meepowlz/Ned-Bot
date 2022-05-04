@@ -128,7 +128,7 @@ async def rtt(ctx: commands.Context, *, identity: str):
 
 	# Builds embed
 	base_embed = discord.Embed(color=ctx.author.color, url=url)
-	if identity == ("800008" or "390119"):
+	if identity in {"800008", "390119"}:
 		base_embed.set_author(name=f"{ctx.author.display_name} is gay!", icon_url=ctx.author.avatar.url)
 	else:
 		base_embed.set_author(name=f"{ctx.author.display_name} searched for identity {identity}",
