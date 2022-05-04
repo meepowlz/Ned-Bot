@@ -12,12 +12,8 @@ from discord.ext import commands
 
 dotenv.load_dotenv()
 
-# https://beautiful-soup-4.readthedocs.io/en/latest/#searching-the-tree
 
 """
-- Raise error if no uid found?
-Should work consistently; determine if the UID shifts places at any point depending on the responses
-identities
 800008 (gay train)
 390119 (full wrap train)
 800320 (random train for testing)
@@ -25,6 +21,10 @@ identities
 
 
 class ServiceException(Exception):
+	pass
+
+
+class SearchException(Exception):
 	pass
 
 
@@ -37,32 +37,35 @@ async def get_service(identity):
 	:param identity: str
 	:return: str, json
 	"""
-	url=f"https://www.realtimetrains.co.uk/search/handler?qsearch={identity}&type=detailed"
+	url = f"https://www.realtimetrains.co.uk/search/handler?qsearch={identity}&type=detailed"
 	# Get the html of resultant page after search
+
 	async with aiohttp.ClientSession() as session:
 		async with session.get(url) as response:
 			r = await response.text()
 
-		# Find service uid
+		# Find service UID
 		soup = BeautifulSoup(r, 'html.parser')
-		li = soup.find_all("li")
+		li = soup.find_all('li')
 		uid = None
 		for item in li:
 			text = str(item)
 			if "UID" in text:
-				# print(text)
 				uid_index = text.find("UID")
 				uid = text[uid_index + 4:].split(",", 1)[0]
-				print(f"UID: {uid}")
 
+		# Use UID for lookup
 		if uid:
 			c_datetime = await get_current_datetime()
 			url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime['year']}/{c_datetime['month']}/{c_datetime['day']}"
 			# Request service information
 			async with session.get(url, auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
-				return uid, await response.json()
+				# Find coach A image for embed display
+				coach_img = str(soup.select('div[coach="A"]')[0].select('img'))
+				coach_img = coach_img[11:].split("\"")[0]
+				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
+				return url, uid, coach_img, await response.json()
 		else:
-			print("OBJECTION")
 			raise ServiceException(f"No service found associated with identity {identity}")
 
 
@@ -71,7 +74,6 @@ async def get_current_datetime():
 	Gets current date & time, splits into usable format
 	:return: dict
 	"""
-	# testing
 	current_datetime = str(datetime.utcnow())
 	split_date = current_datetime.split("-")
 	split_time = split_date[2][3:len(split_date[2])].split(":")
@@ -87,25 +89,28 @@ async def get_current_datetime():
 	return split_datetime
 
 
-async def build_embed(ctx, data, identity, uid, embed):
+async def build_embed(data, identity, img, embed):
 	"""
 	Requests service information
 	Displays information in an embed
-	:param uid: str
+	:param data: dict
+	:param identity: str
+	:param img: str
 	:param embed: discord.Embed
 	:return: discord.Embed
 	"""
 	# Organize returned data
 	operator = data['atocName']
 	service_uid = data['serviceUid']
+	is_passenger = data['isPassenger']
 	origin = data['origin'][0]
 	destination = data['destination'][0]
 	depart_time = origin.get('publicTime', origin['workingTime'])
 	arrive_time = destination.get('publicTime', destination['workingTime'])
-	await ctx.send(origin)
 
 	# Format information in an embed
-	embed.title = f"{operator} - Service UID {service_uid}"
+	embed.title = f"{operator} {service_uid} - {origin['tiploc']} to {destination['tiploc']}"
+	embed.description = f"**Passenger-carrying service**: {is_passenger}"
 	embed.add_field(name="Departure",
 					value=f"Departing {origin['description']} station\n"
 						  f"Time: {depart_time[0:2]}:{depart_time[2:4]}")
@@ -115,6 +120,9 @@ async def build_embed(ctx, data, identity, uid, embed):
 	if identity == "800008":
 		temp = random.randint(1, 3)  # Randomly select image to display
 		embed.set_image(url=os.environ[f'SECRET_IMG_{temp}'])
+	else:
+		embed.set_image(url=img)
+	embed.set_footer(text=f"{operator} - Service {service_uid} for {identity}")
 	embed.timestamp = datetime.utcnow()
 
 	return embed
@@ -124,14 +132,14 @@ async def build_embed(ctx, data, identity, uid, embed):
 async def secret(ctx: commands.Context, *, identity: str):
 	# Displays embed with service information
 	try:
-		uid, data = await get_service(identity)
+		url, uid, img, data = await get_service(identity)
 		await ctx.send(uid)
-		#await ctx.send(data)
 	except ServiceException as error:
 		return await ctx.send(str(error))
 	base_embed = discord.Embed(color=ctx.author.color)
-	base_embed.set_author(name=f"{ctx.author.display_name}", icon_url=ctx.author.avatar.url)
-	embed = await build_embed(ctx, data, identity, uid, base_embed)
+	base_embed.set_author(name=f"{ctx.author.display_name} searched for identity {identity}",
+						icon_url=ctx.author.avatar.url)
+	embed = await build_embed(data, identity, img, base_embed)
 	await ctx.send(embed=embed)
 
 
@@ -139,4 +147,3 @@ async def setup(bot):
 	if platform.system() == "Windows":
 		asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 	bot.add_command(secret)
-
