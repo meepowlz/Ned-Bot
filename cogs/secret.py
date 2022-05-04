@@ -115,7 +115,7 @@ async def build_embed(ctx, data, identity, uid, embed):
 	if identity == "800008":
 		temp = random.randint(1, 3)  # Randomly select image to display
 		embed.set_image(url=os.environ[f'SECRET_IMG_{temp}'])
-	embed.timestamp = datetime.datetime.today()
+	embed.timestamp = datetime.utcnow()
 
 	return embed
 
