@@ -1,5 +1,5 @@
 import asyncio
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 import random
 import platform
@@ -74,7 +74,8 @@ async def get_current_datetime():
 	Gets current date & time, splits into usable format
 	:return: dict
 	"""
-	current_datetime = str(datetime.utcnow())
+	timezone = datetime.timezone()
+	current_datetime = str(datetime.now(timezone.utc))
 	split_date = current_datetime.split("-")
 	split_time = split_date[2][3:len(split_date[2])].split(":")
 	split_datetime = {
