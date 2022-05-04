@@ -6,3 +6,4 @@ discord
 datetime
 bs4
 aiohttp
+zoneinfo
