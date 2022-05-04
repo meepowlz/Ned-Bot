@@ -57,9 +57,12 @@ async def get_service(identity):
 				coach_img = str(soup.select('div[coach="A"]')[0].select('img'))
 				coach_img = coach_img[11:].split("\"")[0]
 				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
-				return search_url, uid, coach_img, await response.json()
+				try:
+					return search_url, uid, coach_img, await response.json()
+				except Exception:
+					raise ServiceException(f"**Identity {identity}** is scheduled for **Service {uid}**, but not currently running")
 		else:
-			raise ServiceException(f"No service found associated with identity {identity}")
+			raise ServiceException(f"No service found associated with **Identity {identity}**")
 
 
 async def build_embed(data, identity, img, embed):
@@ -73,6 +76,7 @@ async def build_embed(data, identity, img, embed):
 	:return: discord.Embed
 	"""
 	# Organize returned data
+	print(data)
 	operator = data['atocName']
 	service_uid = data['serviceUid']
 	is_passenger = data['isPassenger']
