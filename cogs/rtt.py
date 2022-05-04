@@ -89,7 +89,7 @@ async def get_current_datetime():
 	return split_datetime
 
 
-async def build_embed(data, identity, img, embed):
+async def build_embed(data, identity, img, url, embed):
 	"""
 	Requests service information
 	Displays information in an embed
@@ -110,6 +110,7 @@ async def build_embed(data, identity, img, embed):
 
 	# Format information in an embed
 	embed.title = f"{operator} {service_uid} - {origin['tiploc']} to {destination['tiploc']}"
+
 	embed.description = f"**Passenger-carrying service**: {is_passenger}"
 	embed.add_field(name="Departure",
 					value=f"Departing {origin['description']} station\n"
@@ -135,10 +136,10 @@ async def rtt(ctx: commands.Context, *, identity: str):
 		url, uid, img, data = await get_service(identity)
 	except ServiceException as error:
 		return await ctx.send(str(error))
-	base_embed = discord.Embed(color=ctx.author.color)
+	base_embed = discord.Embed(color=ctx.author.color, url=url)
 	base_embed.set_author(name=f"{ctx.author.display_name} searched for identity {identity}",
 						icon_url=ctx.author.avatar.url)
-	embed = await build_embed(data, identity, img, base_embed)
+	embed = await build_embed(data, identity, img, url, base_embed)
 	await ctx.send(embed=embed)
 
 
