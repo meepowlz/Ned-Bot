@@ -129,7 +129,7 @@ async def build_embed(data, identity, img, embed):
 
 
 @commands.command()
-async def secret(ctx: commands.Context, *, identity: str):
+async def rtt(ctx: commands.Context, *, identity: str):
 	# Displays embed with service information
 	try:
 		url, uid, img, data = await get_service(identity)
@@ -145,4 +145,4 @@ async def secret(ctx: commands.Context, *, identity: str):
 async def setup(bot):
 	if platform.system() == "Windows":
 		asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-	bot.add_command(secret)
+	bot.add_command(rtt)
