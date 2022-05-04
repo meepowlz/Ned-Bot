@@ -1,9 +1,9 @@
 import asyncio
 import datetime
-import zoneinfo
 import os
-import random
 import platform
+import random
+import zoneinfo
 
 import aiohttp
 import discord
@@ -12,13 +12,6 @@ from bs4 import BeautifulSoup
 from discord.ext import commands
 
 dotenv.load_dotenv()
-
-
-"""
-800008 (gay train)
-390119 (full wrap train)
-800320 (random train for testing)
-"""
 
 
 class ServiceException(Exception):
@@ -40,7 +33,6 @@ async def get_service(identity):
 	"""
 	search_url = f"https://www.realtimetrains.co.uk/search/handler?qsearch={identity}&type=detailed"
 	# Get the html of resultant page after search
-
 	async with aiohttp.ClientSession() as session:
 		async with session.get(search_url) as response:
 			r = await response.text()
@@ -128,13 +120,18 @@ async def build_embed(data, identity, img, embed):
 
 @commands.command()
 async def rtt(ctx: commands.Context, *, identity: str):
-	# Displays embed with service information
+	# Gathers data from requests
 	try:
 		url, uid, img, data = await get_service(identity)
 	except ServiceException as error:
 		return await ctx.send(str(error))
+
+	# Builds embed
 	base_embed = discord.Embed(color=ctx.author.color, url=url)
-	base_embed.set_author(name=f"{ctx.author.display_name} searched for identity {identity}",
+	if identity == ("800008" or "390119"):
+		base_embed.set_author(name=f"{ctx.author.display_name} is gay!", icon_url=ctx.author.avatar.url)
+	else:
+		base_embed.set_author(name=f"{ctx.author.display_name} searched for identity {identity}",
 						icon_url=ctx.author.avatar.url)
 	embed = await build_embed(data, identity, img, base_embed)
 	await ctx.send(embed=embed)
