@@ -37,11 +37,11 @@ async def get_service(identity):
 	:param identity: str
 	:return: str, json
 	"""
-	url = f"https://www.realtimetrains.co.uk/search/handler?qsearch={identity}&type=detailed"
+	search_url = f"https://www.realtimetrains.co.uk/search/handler?qsearch={identity}&type=detailed"
 	# Get the html of resultant page after search
 
 	async with aiohttp.ClientSession() as session:
-		async with session.get(url) as response:
+		async with session.get(search_url) as response:
 			r = await response.text()
 
 		# Find service UID
@@ -57,14 +57,14 @@ async def get_service(identity):
 		# Use UID for lookup
 		if uid:
 			c_datetime = await get_current_datetime()
-			url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime['year']}/{c_datetime['month']}/{c_datetime['day']}"
+			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime['year']}/{c_datetime['month']}/{c_datetime['day']}"
 			# Request service information
-			async with session.get(url, auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
+			async with session.get(api_url, auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
 				# Find coach A image for embed display
 				coach_img = str(soup.select('div[coach="A"]')[0].select('img'))
 				coach_img = coach_img[11:].split("\"")[0]
 				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
-				return url, uid, coach_img, await response.json()
+				return search_url, uid, coach_img, await response.json()
 		else:
 			raise ServiceException(f"No service found associated with identity {identity}")
 
@@ -89,7 +89,7 @@ async def get_current_datetime():
 	return split_datetime
 
 
-async def build_embed(data, identity, img, url, embed):
+async def build_embed(data, identity, img, embed):
 	"""
 	Requests service information
 	Displays information in an embed
@@ -139,7 +139,7 @@ async def rtt(ctx: commands.Context, *, identity: str):
 	base_embed = discord.Embed(color=ctx.author.color, url=url)
 	base_embed.set_author(name=f"{ctx.author.display_name} searched for identity {identity}",
 						icon_url=ctx.author.avatar.url)
-	embed = await build_embed(data, identity, img, url, base_embed)
+	embed = await build_embed(data, identity, img, base_embed)
 	await ctx.send(embed=embed)
 
 
