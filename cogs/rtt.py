@@ -1,6 +1,5 @@
 import asyncio
-from datetime import datetime, timedelta
-from zoneinfo import ZoneInfo
+from datetime import datetime, timedelta, tzinfo
 import os
 import random
 import platform
@@ -75,7 +74,7 @@ async def get_current_datetime():
 	Gets current date & time, splits into usable format
 	:return: dict
 	"""
-	current_dt = str(datetime(tzinfo=ZoneInfo("Europe/London")))
+	current_dt = str(datetime.now(tz="Europe/London"))
 	split_date = current_dt.split("-")
 	split_time = split_date[2][3:len(split_date[2])].split(":")
 	split_datetime = {
