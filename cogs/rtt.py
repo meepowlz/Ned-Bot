@@ -133,7 +133,6 @@ async def secret(ctx: commands.Context, *, identity: str):
 	# Displays embed with service information
 	try:
 		url, uid, img, data = await get_service(identity)
-		await ctx.send(uid)
 	except ServiceException as error:
 		return await ctx.send(str(error))
 	base_embed = discord.Embed(color=ctx.author.color)
