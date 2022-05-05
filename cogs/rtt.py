@@ -60,7 +60,10 @@ async def get_service(identity):
 			async with session.get(api_url,
 								auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
 				# Find coach A image for embed display
-				coach_img = str(soup.select('div[coach="A"]')[0].select('img'))
+				try:
+					coach_img = str(soup.select('div[coach="A"]')[0].select('img'))
+				except IndexError:
+					coach_img = str(soup.select('div[coach="1"]')[0].select('img'))
 				coach_img = coach_img[11:].split("\"")[0]
 				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
 				try:
