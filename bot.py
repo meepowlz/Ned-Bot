@@ -8,6 +8,7 @@ dotenv.load_dotenv()
 intents = discord.Intents.all()
 intents.members = False
 intents.presences = False
+
 bot = commands.Bot(command_prefix=os.environ["PREFIX"], intents=intents)
 bot.lyrics_channel_id = int(os.environ["LYRICS_CHANNEL_ID"])
 bot.songvs_channel_id = int(os.environ["SONGVS_CHANNEL_ID"])
