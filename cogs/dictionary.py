@@ -7,7 +7,9 @@ from .utils import paginator
 
 
 """
-Commands to quickly look up the definition of a word from Discord!
+Commands to quickly look up the definition of a word
+Paginates to show multiple definitions
+Uses Merriam-Webster API
 """
 
 dotenv.load_dotenv()
@@ -80,21 +82,21 @@ def display_results(words, base_embed):
 
 @commands.command()
 async def define(ctx: commands.Context, *, word: str):
-	# Get words
+	# Get words from API
 	try:
 		results = search_word(word)
 	except SearchException as error:
 		return await ctx.send(str(error))
 
-	# Embed stuff
+	# Build embed
 	base_embed = discord.Embed(color=ctx.author.color)
 	base_embed.set_author(name=f"{ctx.author.display_name} searched for \"{word}\"", icon_url=ctx.author.avatar.url)
 	embeds = list(display_results(results, base_embed))
 
-	# View stuff
+	# Set view for pagination
 	view = paginator.View(embeds)
 
-	# Display embed
+	# Send embed to discord
 	await ctx.send(embed=embeds[0], view=view)
 
 

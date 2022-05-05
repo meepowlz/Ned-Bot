@@ -1,6 +1,11 @@
 from discord.ext import commands
 import asyncio
 
+"""
+Practice and implementation of various Python and Discord features to learn how things work
+Commands are mostly for fun & serve limited use
+"""
+
 # Class stuff
 
 
@@ -114,9 +119,10 @@ async def cheesetime(ctx: commands.Context):
 async def cheeseyay(ctx: commands.Context, *, name: str = None):
 	await ctx.send(f"yaycheese {ctx.author.nick} {name or ''}")
 
+
 @commands.command()
 @commands.is_owner()
-async def del_all(self, ctx: commands.Context):
+async def del_all(ctx: commands.Context):
 	async for message in ctx.channel.history(limit=200):
 		await message.delete()
 		await asyncio.sleep(0.25)

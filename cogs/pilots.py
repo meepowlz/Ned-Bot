@@ -4,7 +4,7 @@ from discord.ext import commands, tasks
 import lyrics
 
 # A list of keywords for Ned to look for
-EAST_LIST = ["whats up","what's up", "whats up?", "what's up?", "wassup", "wassup?"]
+EAST_LIST = ["whats up", "what's up", "whats up?", "what's up?", "wassup", "wassup?"]
 
 
 class Pilots(commands.Cog):
@@ -66,14 +66,14 @@ class Pilots(commands.Cog):
 		if ctx.channel.id == 830946358981689405:
 			title = "Song vs. Song"
 			description = f"- Sends a pair of Twenty One Pilots songs to <#{self.bot.songvs_channel_id}>," \
-						f" adding reactions for voting, and creating a thread for discussion\n" \
-						f"- Vote for your favorite song and defend your position in the thread below!\n" \
-						f"- Sends a new matchup every 24 hours"
+				f" adding reactions for voting, and creating a thread for discussion\n" \
+				f"- Vote for your favorite song and defend your position in the thread below!\n" \
+				f"- Sends a new matchup every 24 hours"
 		elif ctx.channel.id == 943596688931713075:
 			title = "Lyric Feed"
 			description = f"- Sends a random Twenty One Pilots lyric to <#{self.bot.lyrics_channel_id}>\n" \
-						f"- Continue the lyric chain with him!\n" \
-						f"- Sends a new lyric every 4 hours"
+				f"- Continue the lyric chain with him!\n" \
+				f"- Sends a new lyric every 4 hours"
 		else:
 			await ctx.send("Must be in correct channel to use")
 			return

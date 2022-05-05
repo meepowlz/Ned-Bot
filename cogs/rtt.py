@@ -13,6 +13,11 @@ from discord.ext import commands
 
 dotenv.load_dotenv()
 
+# Special images of identity 800008
+PRIDE_IMGS = {1: "https://cdn.discordapp.com/attachments/557309470963924993/964945261937983548/PDTRBF_Pride.png",
+			2: "https://cdn.discordapp.com/attachments/557309470963924993/964955998961954947/PDTRBF_Pride_kiss.png",
+			3: "https://cdn.discordapp.com/attachments/557309470963924993/964958651834073168/PDTRBF_Pride_kissy.png"}
+
 
 class ServiceException(Exception):
 	pass
@@ -52,7 +57,8 @@ async def get_service(identity):
 			c_datetime = datetime.datetime.now(tz=zoneinfo.ZoneInfo("Europe/London"))
 			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime.year}/{c_datetime.month}/{c_datetime.day}"
 			# Request service information
-			async with session.get(api_url, auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
+			async with session.get(api_url,
+								auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
 				# Find coach A image for embed display
 				coach_img = str(soup.select('div[coach="A"]')[0].select('img'))
 				coach_img = coach_img[11:].split("\"")[0]
@@ -60,7 +66,8 @@ async def get_service(identity):
 				try:
 					return search_url, uid, coach_img, await response.json()
 				except Exception:
-					raise ServiceException(f"**Identity {identity}** is scheduled for **Service {uid}**, but not currently running")
+					raise ServiceException(
+						f"**Identity {identity}** is scheduled for **Service {uid}**, but not currently running")
 		else:
 			raise ServiceException(f"No service found associated with **Identity {identity}**")
 
@@ -91,13 +98,13 @@ async def build_embed(data, identity, img, embed):
 	embed.description = f"**Passenger-carrying service**: {is_passenger}"
 	embed.add_field(name="Departure",
 					value=f"Departing {origin['description']} station\n"
-						  f"Time: {depart_time[0:2]}:{depart_time[2:4]}")
+						f"Time: {depart_time[0:2]}:{depart_time[2:4]}")
 	embed.add_field(name="Arrival",
 					value=f"Arriving at {destination['description']} station\n"
-						  f"Time: {arrive_time[0:2]}:{arrive_time[2:4]}")
+						f"Time: {arrive_time[0:2]}:{arrive_time[2:4]}")
 	if identity == "800008":
-		temp = random.randint(1, 3)  # Randomly select image to display
-		embed.set_image(url=os.environ[f'SECRET_IMG_{temp}'])
+		rand = random.randint(1, 3)  # Randomly select image to display
+		embed.set_image(url=PRIDE_IMGS[rand])
 	else:
 		embed.set_image(url=img)
 	embed.set_footer(text=f"{operator} - Service {service_uid} for {identity}")
@@ -120,7 +127,7 @@ async def rtt(ctx: commands.Context, *, identity: str):
 		base_embed.set_author(name=f"{ctx.author.display_name} is gay!", icon_url=ctx.author.avatar.url)
 	else:
 		base_embed.set_author(name=f"{ctx.author.display_name} searched for identity {identity}",
-						icon_url=ctx.author.avatar.url)
+							icon_url=ctx.author.avatar.url)
 	embed = await build_embed(data, identity, img, base_embed)
 	await ctx.send(embed=embed)
 
