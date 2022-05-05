@@ -55,6 +55,7 @@ async def get_service(ctx, identity):
 		# Use UID for lookup
 		if uid:
 			c_datetime = datetime.datetime.now(tz=zoneinfo.ZoneInfo("Europe/London"))
+			ctx.send(c_datetime.year)
 			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime.year}/{c_datetime.month}/{c_datetime.day}"
 			# Request service information
 			async with session.get(api_url,
@@ -68,12 +69,9 @@ async def get_service(ctx, identity):
 				coach_img = coach_img[11:].split("\"")[0]
 				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
 				try:
-					await ctx.send(f"URL:{search_url}\nUID: {uid}")
-					await ctx.send(coach_img)
 					await ctx.send(response.status)
 					return search_url, uid, coach_img, await response.json()
 				except Exception:
-					await ctx.send("Failed u suck")
 					raise ServiceException(
 						f"**Identity {identity}** is scheduled for **Service {uid}**, but not currently running")
 		else:
