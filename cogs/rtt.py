@@ -27,7 +27,7 @@ class SearchException(Exception):
 	pass
 
 
-async def get_service(identity):
+async def get_service(ctx, identity):
 	"""
 	Looks up train by identity
 	Parses the returned html to extract the current service UID
@@ -64,13 +64,15 @@ async def get_service(identity):
 					coach_img = str(soup.select('div[coach="A"]')[0].select('img'))
 				except IndexError:
 					coach_img = str(soup.select('div[coach="1"]')[0].select('img'))
+
 				coach_img = coach_img[11:].split("\"")[0]
 				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
+				await ctx.send(coach_img)
 				try:
-					print("woo")
+					await ctx.send("Success")
 					return search_url, uid, coach_img, await response.json()
 				except Exception:
-					print(":(")
+					await ctx.send("Failed u suck")
 					raise ServiceException(
 						f"**Identity {identity}** is scheduled for **Service {uid}**, but not currently running")
 		else:
@@ -122,7 +124,7 @@ async def build_embed(data, identity, img, embed):
 async def rtt(ctx: commands.Context, *, identity: str):
 	# Gathers data from requests
 	try:
-		url, uid, img, data = await get_service(identity)
+		url, uid, img, data = await get_service(ctx, identity)
 	except ServiceException as error:
 		return await ctx.send(str(error))
 
