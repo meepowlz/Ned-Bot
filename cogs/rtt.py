@@ -69,7 +69,6 @@ async def get_service(ctx, identity):
 				coach_img = coach_img[11:].split("\"")[0]
 				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
 				try:
-					await ctx.send(response.status)
 					return search_url, uid, coach_img, await response.json()
 				except Exception:
 					raise ServiceException(
