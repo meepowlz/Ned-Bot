@@ -67,9 +67,10 @@ async def get_service(ctx, identity):
 
 				coach_img = coach_img[11:].split("\"")[0]
 				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
-				await ctx.send(coach_img)
 				try:
-					await ctx.send("Success")
+					await ctx.send(f"URL:{search_url}\nUID: {uid}")
+					await ctx.send(coach_img)
+					await ctx.send(response.status)
 					return search_url, uid, coach_img, await response.json()
 				except Exception:
 					await ctx.send("Failed u suck")
