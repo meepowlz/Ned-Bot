@@ -52,6 +52,5 @@ def random_lyric(lyrics_list):
 # Writes any changes to the file
 def write_changes(changes):
     # Open json file to write
-    with open("lyrics.json", "w") as file:
-        json.dump(changes, file, indent=4)
-
+    with open("lyrics.json", "w") as f:
+        json.dump(changes, f, indent=4)

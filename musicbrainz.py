@@ -67,7 +67,7 @@ def traverse_tracks(tracks, release, action, selected=None):
         title = track['title']
         position = track['number']
         length = convert_length(tracks[i]['length'] or 0)
-        id = track['recording']['id']
+        mbid = track['recording']['id']
         release_date = track.get('recording', {})
         release_date = release_date.get('first-release-date', None)
 
@@ -83,7 +83,7 @@ def traverse_tracks(tracks, release, action, selected=None):
                 "title": title,
                 "position": position,
                 "length": length,
-                "id": id,
+                "id": mbid,
                 "release_date": release_date
             })
     return return_tracks
@@ -152,8 +152,8 @@ def search_artists():
     # Display all artists found
     for i, artist in enumerate(artist_json):
         print(f"{i + 1}. Artist: {artist['name']}")
-        type = artist.get("type", "Unknown")
-        print(f"Type: {type}")
+        artist_type = artist.get("type", "Unknown")
+        print(f"Type: {artist_type}")
         area = artist.get("area", {})
         area = area.get("name", "Unknown")
         print(f"Origin: {area}")
@@ -223,7 +223,6 @@ def main():
             else:
                 print("Deleting file canceled.")
 
-
         print()
         action = input("Continue file modification? Y/N: ")
         if action.lower() == "y":
@@ -233,4 +232,3 @@ def main():
 
 
 main()
-

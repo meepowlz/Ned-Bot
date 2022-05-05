@@ -1,10 +1,11 @@
-from discord.ext import commands
-import requests
-import dotenv
 import os
-import discord
-from .utils import paginator
 
+import discord
+import dotenv
+import requests
+from discord.ext import commands
+
+from .utils import paginator
 
 """
 Commands to quickly look up the definition of a word

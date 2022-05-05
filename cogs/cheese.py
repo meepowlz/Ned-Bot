@@ -1,5 +1,6 @@
-from discord.ext import commands
 import asyncio
+
+from discord.ext import commands
 
 """
 Practice and implementation of various Python and Discord features to learn how things work
