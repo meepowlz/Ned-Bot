@@ -67,8 +67,10 @@ async def get_service(identity):
 				coach_img = coach_img[11:].split("\"")[0]
 				coach_img = f"https://www.realtimetrains.co.uk{coach_img}"
 				try:
+					print("woo")
 					return search_url, uid, coach_img, await response.json()
 				except Exception:
+					print(":(")
 					raise ServiceException(
 						f"**Identity {identity}** is scheduled for **Service {uid}**, but not currently running")
 		else:
