@@ -59,7 +59,8 @@ async def get_service(ctx, identity):
 			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime.year}/{c_datetime.month}/{c_datetime.day}"
 			# Request service information
 			async with session.get(api_url,
-								auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
+									auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
+				await response.json()
 				# Find coach A image for embed display
 				try:
 					coach_img = str(soup.select('div[coach="A"]')[0].select('img'))
