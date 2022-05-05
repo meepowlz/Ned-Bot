@@ -54,10 +54,8 @@ async def get_service(ctx, identity):
 
 		# Use UID for lookup
 		if uid:
-			c_datetime = datetime.datetime.now(tz=zoneinfo.ZoneInfo("Europe/London"))
-			ctx.send(c_datetime.year)
-			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime.year}/{c_datetime.month}/{c_datetime.day}"
-			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/2022/05/05"
+			c_datetime = await get_current_datetime()
+			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime['year']}/{c_datetime['month']}/{c_datetime['day']}"
 			# Request service information
 			async with session.get(api_url,
 									auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
@@ -78,6 +76,22 @@ async def get_service(ctx, identity):
 						f"**Identity {identity}** is scheduled for **Service {uid}**, but not currently running")
 		else:
 			raise ServiceException(f"No service found associated with **Identity {identity}**")
+
+
+async def get_current_datetime():
+	"""
+	Gets current date & time, splits into usable format
+	Used for making API requests
+	:return: dict
+	"""
+	current_dt = str(datetime.datetime.now(tz=zoneinfo.ZoneInfo("Europe/London")))
+	split_date = current_dt.split("-")
+	split_datetime = {
+		"year": split_date[0],
+		"month": split_date[1],
+		"day": split_date[2][0:2],
+	}
+	return split_datetime
 
 
 async def build_embed(data, identity, img, embed):
