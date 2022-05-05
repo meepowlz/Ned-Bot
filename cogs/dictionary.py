@@ -75,7 +75,7 @@ def display_results(words, base_embed):
 		definitions = "\u2022 " + definitions
 		embed.title = f"Definition for \"{terms}\""
 		embed.description = f"Pronounced: {word['pronunciation']}\n" \
-							f"Part of speech: {word['part']}"
+			f"Part of speech: {word['part']}"
 		embed.add_field(name="Definition", value=definitions)
 		embed.set_footer(text=f"Definition #{i+1}")
 		yield embed
