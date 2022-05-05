@@ -57,6 +57,7 @@ async def get_service(ctx, identity):
 			c_datetime = datetime.datetime.now(tz=zoneinfo.ZoneInfo("Europe/London"))
 			ctx.send(c_datetime.year)
 			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/{c_datetime.year}/{c_datetime.month}/{c_datetime.day}"
+			api_url = f"https://api.rtt.io/api/v1/json/service/{uid}/2022/05/05"
 			# Request service information
 			async with session.get(api_url,
 									auth=aiohttp.BasicAuth(os.environ['RTT_USER'], os.environ['RTT_PASS'])) as response:
