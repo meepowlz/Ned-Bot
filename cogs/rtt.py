@@ -27,7 +27,7 @@ class SearchException(Exception):
 	pass
 
 
-async def get_service(ctx, identity):
+async def get_service(identity):
 	"""
 	Looks up train by identity
 	Parses the returned html to extract the current service UID
@@ -138,7 +138,7 @@ async def build_embed(data, identity, img, embed):
 async def rtt(ctx: commands.Context, *, identity: str):
 	# Gathers data from requests
 	try:
-		url, uid, img, data = await get_service(ctx, identity)
+		url, uid, img, data = await get_service(identity)
 	except ServiceException as error:
 		return await ctx.send(str(error))
 
