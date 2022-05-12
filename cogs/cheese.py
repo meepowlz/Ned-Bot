@@ -144,3 +144,4 @@ async def setup(bot):
 	bot.add_command(otter)
 	bot.add_command(cheesetime)
 	bot.add_command(cheeseyay)
+	bot.add_command(catfact)
