@@ -134,8 +134,8 @@ async def del_all(ctx: commands.Context):
 async def catfact(ctx: commands.Context):
 	async with aiohttp.ClientSession() as session:
 		async with session.get("https://catfact.ninja/fact") as response:
-			await response.json()
-			await ctx.send(response['fact'])
+			data = await response.json()
+			await ctx.send(data['fact'])
 
 
 async def setup(bot):
