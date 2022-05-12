@@ -1,4 +1,5 @@
 import asyncio
+import aiohttp
 
 from discord.ext import commands
 
@@ -127,6 +128,14 @@ async def del_all(ctx: commands.Context):
 	async for message in ctx.channel.history(limit=200):
 		await message.delete()
 		await asyncio.sleep(0.25)
+
+
+@commands.command()
+async def catfact(ctx: commands.Context):
+	async with aiohttp.ClientSession() as session:
+		async with session.get("https://catfact.ninja/fact") as response:
+			await response.json()
+			await ctx.send(response['fact'])
 
 
 async def setup(bot):
