@@ -1,4 +1,5 @@
 import asyncio
+import aiohttp
 
 from discord.ext import commands
 
@@ -129,9 +130,18 @@ async def del_all(ctx: commands.Context):
 		await asyncio.sleep(0.25)
 
 
+@commands.command()
+async def catfact(ctx: commands.Context):
+	async with aiohttp.ClientSession() as session:
+		async with session.get("https://catfact.ninja/fact") as response:
+			data = await response.json()
+			await ctx.send(data['fact'])
+
+
 async def setup(bot):
 	bot.add_command(bread)
 	bot.add_command(toast)
 	bot.add_command(otter)
 	bot.add_command(cheesetime)
 	bot.add_command(cheeseyay)
+	bot.add_command(catfact)
