@@ -5,6 +5,7 @@ import lyrics
 
 # A list of keywords for Ned to look for
 EAST_LIST = ["whats up", "what's up", "whats up?", "what's up?", "wassup", "wassup?"]
+CLIQUE_GANG_GUILD_ID = 521178844128870413
 
 
 class Pilots(commands.Cog):
@@ -96,12 +97,13 @@ class Pilots(commands.Cog):
 	@commands.Cog.listener()
 	async def on_message(self, message: discord.Message):
 		# Checks if a user says a keyword to reply to
-		if message.content.lower() in EAST_LIST:
-			await message.channel.send("East")
-		elif message.content.lower() == "no":
-			await message.channel.send("I move slow")
-		if message.content.lower() == "cheese time":
-			await message.channel.send(":cheese::timer:")
+		if message.guild.id == CLIQUE_GANG_GUILD_ID:
+			if message.content.lower() in EAST_LIST:
+				await message.channel.send("East")
+			elif message.content.lower() == "no":
+				await message.channel.send("I move slow")
+			if message.content.lower() == "cheese time":
+				await message.channel.send(":cheese::timer:")
 
 
 async def setup(bot):
