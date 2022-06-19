@@ -2,10 +2,10 @@ import discord
 
 
 class View(discord.ui.View):
-	def __init__(self, embeds):
+	def __init__(self, embeds, current_page=0):
 		super().__init__()
 		self.embeds = embeds
-		self.current_page = 0
+		self.current_page = current_page
 
 	def loop_pages(self, direction):
 		if direction == "next":

@@ -10,6 +10,8 @@ import discord
 import dotenv
 from bs4 import BeautifulSoup
 from discord.ext import commands
+from .utils import paginator
+
 
 dotenv.load_dotenv()
 
@@ -93,7 +95,22 @@ async def get_current_datetime():
 	return split_datetime
 
 
-async def build_embed(data, identity, img, embed):
+async def split_time(time):
+	time = f"{time[0:2]}:{time[2:4]}"
+	return time
+
+
+async def find_last_station(locations):
+	i = len(locations)
+	for location in reversed(locations):
+		location_arrived = location.get('realtimeArrivalActual', False)
+		if location_arrived:
+			return i
+		i -= 1
+	return 0
+
+
+async def build_embed(data, identity, img, base_embed):
 	"""
 	Requests service information
 	Displays information in an embed
@@ -103,35 +120,80 @@ async def build_embed(data, identity, img, embed):
 	:param embed: discord.Embed
 	:return: discord.Embed
 	"""
+
 	# Organize returned data
-	print(data)
 	operator = data['atocName']
 	service_uid = data['serviceUid']
 	is_passenger = data['isPassenger']
+
 	origin = data['origin'][0]
 	destination = data['destination'][0]
 	depart_time = origin.get('publicTime', origin['workingTime'])
 	arrive_time = destination.get('publicTime', destination['workingTime'])
 
-	# Format information in an embed
-	embed.title = f"{operator} {service_uid} - {origin['tiploc']} to {destination['tiploc']}"
+	# Finishes basic embed
+	if is_passenger:
+		emoji = "\N{SEAT}"
+	else:
+		emoji = "\N{PACKAGE}"
+	base_embed.title = f"{operator} {service_uid} - {origin['tiploc']} to {destination['tiploc']} {emoji}"
 
-	embed.description = f"**Passenger-carrying service**: {is_passenger}"
-	embed.add_field(name="Departure",
-					value=f"Departing {origin['description']} station\n"
-						f"Time: {depart_time[0:2]}:{depart_time[2:4]}")
-	embed.add_field(name="Arrival",
-					value=f"Arriving at {destination['description']} station\n"
-						f"Time: {arrive_time[0:2]}:{arrive_time[2:4]}")
 	if identity == "800008":
 		rand = random.randint(1, 3)  # Randomly select image to display
-		embed.set_image(url=PRIDE_IMGS[rand])
+		base_embed.set_image(url=PRIDE_IMGS[rand])
 	else:
-		embed.set_image(url=img)
-	embed.set_footer(text=f"{operator} - Service {service_uid} for {identity}")
-	embed.timestamp = datetime.datetime.now(tz=zoneinfo.ZoneInfo("Europe/London"))
+		base_embed.set_image(url=img)
+	base_embed.set_footer(text=f"{operator} - Service {service_uid} for {identity}")
+	base_embed.timestamp = datetime.datetime.now(tz=zoneinfo.ZoneInfo("Europe/London"))
 
-	return embed
+	embed = base_embed.copy()
+
+	embed.add_field(name="Departure",
+					value=f"Departing {origin['description']} station\n"
+						  f"Time: {await split_time(depart_time)}")
+	embed.add_field(name="Arrival",
+					value=f"Arriving at {destination['description']} station\n"
+						  f"Time: {await split_time(arrive_time)}")
+	embeds = [embed]
+
+	# figure out which station it is at
+	locations = data.get('locations')
+	if locations is None:
+		return embeds, None
+
+	for location in locations:
+
+		location_arrived = location.get('realtimeArrivalActual', False)
+		arrived_time = location.get('realtimeArrival', "N/A")
+		if location_arrived:
+			arrived_time = f"**{await split_time(arrived_time)}**"
+		elif arrived_time == "N/A":
+			pass
+		else:
+			arrived_time = f"*{await split_time(arrived_time)}*"
+
+		location_departed = location.get('realtimeDepartureActual', False)
+		departed_time = location.get('realtimeDeparture', "N/A")
+		if location_departed:
+			departed_time = f"**{await split_time(departed_time)}**"
+		elif departed_time == "N/A":
+			pass
+		else:
+			departed_time = f"*{await split_time(departed_time)}*"
+
+		embed = base_embed.copy()
+
+		embed.description = f"Station: {location['description']} ({location['tiploc']})"
+		embed.add_field(name="Arrival",
+						value=f"Time: {arrived_time}")
+		embed.add_field(name="Departure",
+						value=f"Time: {departed_time}")
+
+		embeds.append(embed)
+
+	i = await find_last_station(data['locations'])
+
+	return embeds, i
 
 
 @commands.command()
@@ -139,7 +201,6 @@ async def rtt(ctx: commands.Context, *, identity: str):
 	# Gathers data from requests
 	try:
 		url, uid, img, data = await get_service(identity)
-		print(data)
 	except ServiceException as error:
 		return await ctx.send(str(error))
 
@@ -150,8 +211,12 @@ async def rtt(ctx: commands.Context, *, identity: str):
 	else:
 		base_embed.set_author(name=f"{ctx.author.display_name} searched for identity {identity}",
 							icon_url=ctx.author.avatar.url)
-	embed = await build_embed(data, identity, img, base_embed)
-	await ctx.send(embed=embed)
+	embeds, i = await build_embed(data, identity, img, base_embed)
+	if i is not None:
+		view = paginator.View(embeds, i)
+		await ctx.send(embed=embeds[i], view=view)
+	else:
+		await ctx.send(embed=embeds[0])
 
 
 async def setup(bot):
