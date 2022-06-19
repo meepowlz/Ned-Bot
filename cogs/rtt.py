@@ -139,6 +139,7 @@ async def rtt(ctx: commands.Context, *, identity: str):
 	# Gathers data from requests
 	try:
 		url, uid, img, data = await get_service(identity)
+		print(data)
 	except ServiceException as error:
 		return await ctx.send(str(error))
 

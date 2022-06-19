@@ -7,7 +7,7 @@ import lyrics
 # A list of keywords for Ned to look for
 EAST_LIST = ["whats up", "what's up", "whats up?", "what's up?", "wassup", "wassup?"]
 CLIQUE_GANG_GUILD_ID = 521178844128870413
-LOOP_TIMES = [datetime.time(hour=6), datetime.time(hour=12), datetime.time(hour=18), datetime.time(hour=24)]
+LOOP_TIMES = [datetime.time(hour=6), datetime.time(hour=12), datetime.time(hour=18), datetime.time(hour=0)]
 
 
 class Pilots(commands.Cog):
