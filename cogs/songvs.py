@@ -2,6 +2,7 @@ import json
 import random
 from collections import deque, defaultdict
 from pathlib import Path
+import datetime
 
 import discord
 from discord.ext import commands, tasks
@@ -14,6 +15,7 @@ Opens a thread for song discussion
 """
 
 server_files = {521178844128870413: "top_data.json", 868961460607389778: "honne_data.json"}
+SONGVS_TIME = datetime.time(hour=12)
 
 
 class Songvs(commands.Cog):
@@ -45,14 +47,14 @@ class Songvs(commands.Cog):
 
         return selected_song
 
-    def build_embed(self, embed, song):
+    def build_embed(self, embed, song, num):
         """
         Develops embed with song information
         :param embed: discord.Embed
         :param song: dict
         :return: discord.Embed
         """
-        embed.add_field(name=song['title'],
+        embed.add_field(name=f"{num}\N{COMBINING ENCLOSING KEYCAP} {song['title']}",
                         value=f"Album: {song['release']}\n"
                               f"Length: {song['length']}\n"
                               f"Released on: {song['release_date']}")
@@ -78,8 +80,8 @@ class Songvs(commands.Cog):
         # Builds an embed with song data
         base_embed = discord.Embed(color=color or guild.me.color)
         base_embed.title = f"\"{song_1['title']}\" vs. \"{song_2['title']}\""
-        embed = self.build_embed(base_embed, song_1)
-        embed = self.build_embed(embed, song_2)
+        embed = self.build_embed(base_embed, song_1, 1)
+        embed = self.build_embed(embed, song_2, 2)
 
         # Sends embed, attaches reactions & creates thread
         message = await channel.send(embed=embed)
@@ -93,7 +95,7 @@ class Songvs(commands.Cog):
         # Command version of Song vs. Song
         await self.create_matchup(ctx.channel, ctx.guild, ctx.author.color)
 
-    @tasks.loop(hours=24)
+    @tasks.loop(time=SONGVS_TIME)
     async def songvs_loop(self):
         # Loop version of Song vs. Song
         channel = self.bot.get_channel(self.bot.songvs_channel_id)

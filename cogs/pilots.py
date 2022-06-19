@@ -1,11 +1,13 @@
 import discord
 from discord.ext import commands, tasks
+import datetime
 
 import lyrics
 
 # A list of keywords for Ned to look for
 EAST_LIST = ["whats up", "what's up", "whats up?", "what's up?", "wassup", "wassup?"]
 CLIQUE_GANG_GUILD_ID = 521178844128870413
+LOOP_TIMES = [datetime.time(hour=6), datetime.time(hour=12), datetime.time(hour=18), datetime.time(hour=24)]
 
 
 class Pilots(commands.Cog):
@@ -87,7 +89,7 @@ class Pilots(commands.Cog):
 						inline=False)
 		await ctx.send(embed=embed)
 
-	@tasks.loop(hours=4)
+	@tasks.loop(time=LOOP_TIMES)
 	async def lyric_loop(self):
 		# Sends a random song lyric every 4 hours
 		channel = self.bot.get_channel(self.bot.lyrics_channel_id)
